@@ -1,0 +1,169 @@
+/* ==========================================================================
+   NAVIGATION BAR COMPONENT STYLES
+   ========================================================================== */
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px); /* Modern translucent background layer */
+}
+
+.navbar {
+    /* max-width: 1200px; */
+    margin: 10px;
+    margin-left: 20px;
+     margin-right: 20px;
+ 
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Alignment */
+.logo {
+ 
+    font-family: var(--font-logo);
+    font-size: 28px;
+    color: #ffffff;
+}
+
+/* --- Desktop Layout (forTopBar Column Structure) --- */
+.nav-desktop-menu {
+    display: flex;
+    gap: 32px;
+    
+}
+
+.nav-item-desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Matches crossAxisAlignment: CrossAxisAlignment.end */
+    text-decoration: none;
+    font-family: var(--font-navbar);
+}
+
+.nav-item-desktop .nav-num {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6); /* Semi-transparent white matching withAlpha(150) */
+ 
+    transition: color 0.2s ease;
+}
+
+.nav-item-desktop .nav-text {
+    font-size: 23px;
+    color: #ffffff;
+    
+    transition: color 0.2s ease;
+}
+
+/* Hover effects matching hoverColor = Colors.red */
+.nav-item-desktop:hover .nav-num,
+.nav-item-desktop:hover .nav-text {
+    color: #ff0000;
+}
+
+/* --- Icon Actions and Toggle Styling --- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon-btn {
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 45px;
+    background-color: transparent; /* Remove fixed color boxes */
+}
+
+/* Assign default navigation open graphic state */
+.mobile-toggle-btn {
+    display: none; /* Hidden on Desktop viewports */
+    background-color: #ffffff; /* Default color: Red */
+
+    /* Uncommented and cleanly wired */
+    -webkit-mask-image: var(--icon-menu-open);
+    mask-image: var(--icon-menu-open);
+    
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+.mobile-toggle-btn.open {
+    background-color: #ffffff; /* Swap to blue when open */
+    
+    /* Fixed the variable typo here */
+    -webkit-mask-image: var(--icon-menu-close);
+    mask-image: var(--icon-menu-close);
+}
+
+/* --- Mobile Menu Overlay (forBottomBar Row Structure) --- */
+.mobile-menu-drawer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #0d0d0d;
+    max-height: 0; /* Starts collapsed out of view bounds */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.mobile-menu-drawer.active {
+    max-height: 350px; /* Expands open gracefully when toggled active */
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.mobile-drawer-content {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.nav-item-mobile {
+    display: flex;
+    flex-direction: row; /* Matches Row(spacing: 10) layout design */
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+    font-family: var(--font-navbar);
+}
+
+.nav-item-mobile .nav-num,
+.nav-item-mobile .nav-text {
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: normal;
+    transition: color 0.2s ease;
+}
+
+.nav-item-mobile:hover .nav-num,
+.nav-item-mobile:hover .nav-text {
+    color: #ff0000;
+}
+
+/* --- Responsiveness Media Rule Mapping --- */
+@media (max-width: 768px) {
+    .nav-desktop-menu {
+        display: none; /* Hide standard structural grid layout elements */
+    }
+    
+    .mobile-toggle-btn {
+        display: block; /* Reveal interaction hooks on smaller device break scales */
+    }
+    
+    .logo {
+        font-size: 22px; /* Scales brand identifier down to balance constraints */
+    }
+}

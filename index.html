@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Javir | Portfolio</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components/navbar.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">Al Javir_.</div>
+
+            <div class="nav-desktop-menu">
+                <a href="#home" class="nav-item-desktop">
+                    <span class="nav-num">01</span>
+                    <span class="nav-text">// Home</span>
+                </a>
+                <a href="#skills" class="nav-item-desktop">
+                    <span class="nav-num">02</span>
+                    <span class="nav-text">// Skill</span>
+                </a>
+                <a href="#projects" class="nav-item-desktop">
+                    <span class="nav-num">03</span>
+                    <span class="nav-text">// Project</span>
+                </a>
+                <a href="#contact" class="nav-item-desktop">
+                    <span class="nav-num">04</span>
+                    <span class="nav-text">// Contract</span>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+
+                <button id="mobile-menu-btn" class="icon-btn mobile-toggle-btn" aria-label="Toggle Menu"></button>
+            </div>
+        </nav>
+
+        <div id="mobile-drawer" class="mobile-menu-drawer">
+            <div class="mobile-drawer-content">
+                <a href="#home" class="nav-item-mobile">
+                    <span class="nav-num">01</span>
+                    <span class="nav-text">// Home</span>
+                </a>
+                <a href="#skills" class="nav-item-mobile">
+                    <span class="nav-num">02</span>
+                    <span class="nav-text">// Skill</span>
+                </a>
+                <a href="#projects" class="nav-item-mobile">
+                    <span class="nav-num">03</span>
+                    <span class="nav-text">// Project</span>
+                </a>
+                <a href="#contact" class="nav-item-mobile">
+                    <span class="nav-num">04</span>
+                    <span class="nav-text">// Contract</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-scroller">
+
+        <section id="home" class="section-block">
+            <div id="home-content">
+                <h1 class="shining-text">Loading Profile...</h1>
+            </div>
+        </section>
+
+        <section id="skills" class="section-block">
+            <h2 class="section-title">My Skills</h2>
+            <div id="skills-grid" class="grid-layout"></div>
+        </section>
+
+        <section id="projects" class="section-block">
+            <h2 class="section-title">Featured Projects</h2>
+            <div id="projects-grid" class="grid-layout"></div>
+        </section>
+
+        <section id="contact" class="section-block">
+            <h2 class="section-title">Get in Touch</h2>
+            <div id="contact-container"></div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Al Javir. Built with Pure Web Technologies.</p>
+    </footer>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>

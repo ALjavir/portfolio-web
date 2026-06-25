@@ -1,0 +1,107 @@
+/* ==========================================================================
+   1. CUSTOM FONT REGISTRATIONS (From font_style.dart)
+   ========================================================================== */
+
+@font-face {
+  font-family: 'HousttelySignature';
+  src: url('../assets/fonts/HousttelySignature-GOonZ.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gangors';
+  src: url('../assets/fonts/Gangors-2vr2l.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'BodoniModa';
+  src: url('../assets/fonts/BodoniModa-VariableFont.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('../assets/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('../assets/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   2. GLOBAL VARIABLES (Your Design Tokens)
+   ========================================================================== */
+:root {
+  /* --- Typography Map --- */
+  --font-logo: 'HousttelySignature', sans-serif;
+  --font-navbar: 'Gangors', sans-serif;
+  --font-s-primary: 'BodoniModa', serif;
+  --font-primary: 'PlayfairDisplay', serif;
+  --font-sub: 'Lato', sans-serif;
+
+  /* --- Icon Asset Paths Map (From icon_style.dart) --- */
+  --icon-menu-open: url('/assets/icons/menu_open.svg');
+  --icon-menu-close: url('/assets/icons/menu_Close.svg');
+  --icon-flutter: url('/assets/icons/flutter.svg');
+  --icon-smile: url('/assets/icons/smile.json');
+  --icon-scroll_down: url('/assets/icons/scroll_down.json');
+  --icon-Error_404: url('/assets/icons/Error_404.json');
+
+}
+
+
+/* ==========================================================================
+   3. GLOBAL BASE STYLES & BREAKPOINTS
+   ========================================================================== */
+
+/* The box-sizing reset ensures padding doesn't accidentally alter element sizes */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #ffffff;
+
+  /* MINIMUM: Never drop below 14px (for readability on tiny phones)
+       DYNAMIC: Scaled dynamically at 1.2% of the viewport width + a tiny 10px base
+       MAXIMUM: Never grow larger than 18px (so it stays crisp on huge desktop monitors)
+    */
+  font-size: clamp(14px, 1.2vw + 10px, 18px);
+
+  font-family: var(--font-sub);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  /* Headings need to scale much louder than body text! */
+  font-size: clamp(28px, 4vw + 12px, 48px);
+}
+@media (max-width: 768px) {
+    .nav-desktop-menu {
+        display: none;
+    }
+    
+    .mobile-toggle-btn {
+        display: block; /* This makes the button visible on mobile screens! */
+    }
+    
+    .logo {
+        font-size: 22px;
+    }
+}
