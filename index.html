@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/components/navbar.css">
+    <link rel="stylesheet" href="styles/components/home.css">
 </head>
 
 <body>
@@ -36,7 +37,6 @@
             </div>
 
             <div class="nav-actions">
-
                 <button id="mobile-menu-btn" class="icon-btn mobile-toggle-btn" aria-label="Toggle Menu"></button>
             </div>
         </nav>
@@ -65,11 +65,34 @@
 
     <main class="page-scroller">
 
+
+        <!-- HOME PAGE------------------------------------------------------------ -->
         <section id="home" class="section-block">
+
+            <canvas id="bg-canvas"></canvas>
+
             <div id="home-content">
-                <h1 class="shining-text">Loading Profile...</h1>
+
+                <h1 class="hero-heading">
+                    <span class="line-row">
+                        HI!<span id="lottie-smile" class="inline-icon-container"></span> I AM <span
+                            class="accent-text">AL JAVIR,  </span>
+                    </span>
+                    <span class="line-row">
+                        A<span class="inline-svg-container flutter-icon"></span> <span
+                            class="accent-text">  FLUTTER  </span> DEVELOPER_.
+                    </span>
+                </h1>
+                <p class="shining-subtext">Crafting sleek, scalable, and meaningful digital experiences.</p>
+
+
+
             </div>
+
         </section>
+
+
+
 
         <section id="skills" class="section-block">
             <h2 class="section-title">My Skills</h2>
@@ -92,6 +115,8 @@
         <p>&copy; 2026 Al Javir. Built with Pure Web Technologies.</p>
     </footer>
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script type="module" src="src/main.js"></script>
 </body>
 

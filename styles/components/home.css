@@ -1,0 +1,183 @@
+/* ==========================================================================
+   HOME CONTAINER (The Stack Parent)
+   ========================================================================== */
+#home {
+    position: relative;
+    /* Anchors absolute elements like the canvas inside here */
+    width: 100%;
+    min-height: 100vh;
+    /* Full screen height viewport tracking */
+    display: flex;
+    justify-content: center;
+    /* Horizontal alignment centering */
+    align-items: center;
+    /* Vertical alignment centering */
+    background-color: #000000;
+    /* Matches the shader background clear color */
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   LAYER 1: WEBGL BACKGROUND CANVAS
+   ========================================================================== */
+#bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Stack order: Absolute bottom */
+    pointer-events: none;
+    /* Allows clicks/scrolls to pass through directly to buttons */
+}
+
+/* ==========================================================================
+   LAYER 2: FOREGROUND PORTFOLIO CONTENT
+   ========================================================================== */
+#home-content {
+    position: relative;
+    z-index: 2;
+    /* Stack order: Sitting safely above the canvas graphics */
+    text-align: center;
+    max-width: 800px;
+    padding: 0 24px;
+}
+
+
+/* ==========================================================================
+   HERO TYPOGRAPHY PIPELINE (PC vs Phone Responsive Framework)
+   ========================================================================== */
+.hero-heading {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 48px;
+    font-variation-settings: 'opsz' 10;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    
+    
+}
+
+
+
+/* Row & Accent Color Controls */
+.line-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+
+}
+
+
+
+.accent-text {
+    color: #ff0000;
+    /* Keeps the sans-serif or bold accents explicitly controlled */
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   INLINE ICON ASSET FRAMEWORKS
+   ========================================================================== */
+.inline-icon-container {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+
+}
+
+
+
+/* Flutter SVG Element via Mask Injection */
+.inline-svg-container.flutter-icon {
+    display: inline-block;
+
+    /* Keep these sizes matching your typography line layout height */
+    width: 42px;
+    height: 42px;
+    vertical-align:middle;
+
+    /* FIX: Switch from mask stencil to direct asset rendering */
+    background-image: var(--icon-flutter);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#lottie-smile {
+    transform: translateY(-8px); /* Use positive to push down, negative to pull up */
+}
+
+/* ==========================================================================
+   SHINING TEXT SYSTEM (Direct Port of your Flutter shiningText_animation.dart)
+   ========================================================================== */
+.shining-subtext {
+    font-family: var(--font-sub, sans-serif);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin: 10px auto 40px auto;
+    max-width: 650px;
+    line-height: 1.6;
+    text-align: center;
+    font-weight: 500;
+
+    /* Replicates your Dart gradient stops: #404040 base, white highlight, #404040 trail */
+    background: linear-gradient(110deg,
+            #404040 0%,
+            #404040 35%,
+            #ffffff 50%,
+            #404040 65%,
+            #404040 100%);
+    background-size: 200% 100%;
+
+    /* Replicates Flutter's BlendMode.srcIn by clipping background layout to textual paths */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+
+    /* Replicates Tween(begin: -2.0, end: 2.0) with an infinite animation controller loop */
+    animation: textShineEngine 4s linear infinite;
+}
+
+@keyframes textShineEngine {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #lottie-smile {
+    transform: translateY(0px); /* Use positive to push down, negative to pull up */
+}
+    .hero-heading {
+        font-size: 38px;  
+ 
+    }
+        .inline-svg-container.flutter-icon {
+        width: 32px;
+        height: 32px;
+    }
+ .line-row{
+      gap: 0px 12px; 
+        line-height: 1.5;
+ }
+    .shining-subtext{
+        margin: 12px auto 40px auto;
+    }
+}

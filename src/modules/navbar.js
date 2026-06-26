@@ -47,3 +47,25 @@ export function initNavbar() {
 
     console.log("🔹 Navbar module initialized with clean single-page scroll routes.");
 }
+
+
+let lastScrollY = window.scrollY;
+const mainHeader = document.querySelector('.main-header');
+
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    // Guard statement: prevents calculation glitching on iOS rubber-band overscroll
+    if (currentScrollY < 0) return;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 70) {
+        // User is scrolling DOWN -> Inject the hidden utility helper modifier
+        mainHeader.classList.add('header-hidden');
+    } else {
+        // User is scrolling UP -> Remove utility helper to drop navbar back down
+        mainHeader.classList.remove('header-hidden');
+    }
+
+    // Update index checkpoint marker
+    lastScrollY = currentScrollY;
+});
