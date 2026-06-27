@@ -40,7 +40,7 @@
     z-index: 2;
     /* Stack order: Sitting safely above the canvas graphics */
     text-align: center;
-    max-width: 800px;
+  
     padding: 0 24px;
 }
 
@@ -224,14 +224,14 @@
 }
 
 .skill-card-column img {
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
 }
 
 /* Dynamic sub-tag styling utilizing standard monospace font profiles */
 .skill-card-subtext {
     font-size: 12px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: --font-sub;
     color: rgba(255, 255, 255, 0.38);
     /* Matches Colors.white38 precisely */
     text-align: center;
@@ -281,7 +281,13 @@
 
 
 
-
+@media (min-width: 769px) {
+ 
+    /* Interactive hover class triggered dynamically through JS mouse listener */
+    .homepage-skills-wrapper.hovered-state .code-bracket {
+        color: #ef4444; 
+    }
+}
 
 @media (max-width: 768px) {
     #lottie-smile {
@@ -300,7 +306,7 @@
     }
 
     .line-row {
-        padding: 0px 165px;
+        padding: 0px 170px;
         gap: 0px 12px;
         line-height: 1.5;
     }
@@ -310,9 +316,13 @@
     }
 
 .homepage-skills-wrapper {
-    width: 60%;
+    max-width: 768px;
+   padding: 0px 175px;
 }
-
+.skill-card-column img {
+    width: 38px;
+    height: 38px;
+}
 
     .tech-powered-footer .code-bracket {
         font-size: 16px;
