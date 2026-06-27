@@ -5,11 +5,11 @@
 // 1. Import initialization functions from your feature modules
 import { initNavbar } from './modules/navbar.js';
 import { initHome } from './modules/home.js';
-import { initHomeShader } from "./home_bg.js";
 import { initSkills } from './modules/skills.js';
 import { initProjects } from './modules/projects.js';
 import { initContact } from './modules/contact.js';
-
+import { initlottie } from './animation/lottie-ani.js';
+import { initHomeShader } from "./animation/home-bg.js";
 /**
  * document.addEventListener("DOMContentLoaded", ...) acts exactly like 
  * Flutter's initialization blocks before calling runApp().
@@ -19,34 +19,40 @@ import { initContact } from './modules/contact.js';
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("🚀 Portfolio system initializing...");
 
+
+
+    // 2. Initialize the UI layouts sequentially
+    initNavbar();
     try {
-        
-        // 2. Initialize the UI layouts sequentially
-        initNavbar();
         await initHome();
-        await initSkills();
-        await initProjects();
-        await initContact();
-
-
-        // cssJavaScript-----------------------------------------------------
-        initHomeShader();
-        const smileContainer = document.getElementById("lottie-smile");
-    if (smileContainer) {
-        lottie.loadAnimation({
-            container: smileContainer,
-            renderer: "svg",
-            loop: true,
-            autoplay: true,
-            // Pulls the animation configuration path directly out of your asset files
-            path: "assets/icons/smile.json" 
-        });
-    }
-
-
-        console.log("🎯 All features loaded successfully.");
     } catch (error) {
-        console.error("💥 Critical error during portfolio initialization:", error);
+        console.error("💥 Critical error during initHome initialization:", error);
     }
+
+    try {
+        await initSkills();
+    } catch (error) {
+        console.error("💥 Critical error during initSkills initialization:", error);
+    }
+
+    try {
+        await initProjects();
+    } catch (error) {
+        console.error("💥 Critical error during initProjects initialization:", error);
+    }
+
+    try {
+        await initContact();
+    } catch (error) {
+        console.error("💥 Critical error during initContact initialization:", error);
+    }
+
+    // cssJavaScript-----------------------------------------------------
+    initHomeShader();
+    initlottie("lottie-smile", "assets/icons/smile.json");
+    //------------------------------------------------------------------
+
+
+
 });
 

@@ -61,12 +61,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
-    
-    
 }
-
 
 
 /* Row & Accent Color Controls */
@@ -79,7 +74,6 @@
 
 
 }
-
 
 
 .accent-text {
@@ -100,7 +94,6 @@
 }
 
 
-
 /* Flutter SVG Element via Mask Injection */
 .inline-svg-container.flutter-icon {
     display: inline-block;
@@ -108,7 +101,7 @@
     /* Keep these sizes matching your typography line layout height */
     width: 42px;
     height: 42px;
-    vertical-align:middle;
+    vertical-align: middle;
 
     /* FIX: Switch from mask stencil to direct asset rendering */
     background-image: var(--icon-flutter);
@@ -116,8 +109,10 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
 #lottie-smile {
-    transform: translateY(-8px); /* Use positive to push down, negative to pull up */
+    transform: translateY(-8px);
+    /* Use positive to push down, negative to pull up */
 }
 
 /* ==========================================================================
@@ -126,7 +121,7 @@
 .shining-subtext {
     font-family: var(--font-sub, sans-serif);
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    margin: 10px auto 40px auto;
+    margin: 10px auto 150px auto;
     max-width: 650px;
     line-height: 1.6;
     text-align: center;
@@ -161,23 +156,171 @@
     }
 }
 
+
+
+
+
+
+
+/* Master structural block framing matching your 1100px desktop constraint */
+.homepage-skills-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ef4444;
+}
+
+/* Horizontal collection organizer alignment row */
+.skills-slider-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+/* THE SHADERMASK TRANSLATION: Pure CSS alpha transparency channel masking */
+.skills-slider-viewport {
+    height: 105px;
+    flex: 1;
+    overflow-x: auto;
+    display: flex;
+    scroll-behavior: smooth;
+    user-select: none;
+
+    /* Matches stops: [0.0, 0.12, 0.88, 1.0] from Flutter source text exactly */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+/* Completely blind native scroll tracks across environments */
+.skills-slider-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.skills-slider-viewport {
+    scrollbar-width: none;
+}
+
+/* The layout loop track channel */
+.infinite-scroll-track {
+    display: flex;
+    align-items: center;
+}
+
+/* Individual node columns matching mainAxisAlignment: center */
+.skill-card-column {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+}
+
+.skill-card-column img {
+    width: 42px;
+    height: 42px;
+}
+
+/* Dynamic sub-tag styling utilizing standard monospace font profiles */
+.skill-card-subtext {
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgba(255, 255, 255, 0.38);
+    /* Matches Colors.white38 precisely */
+    text-align: center;
+}
+
+/* Clean, decoupled arrow control styling definitions */
+.chevron-nav-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    /* Matches Colors.white60 layout style */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.chevron-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Matches hoverColor: Colors.white10 */
+    color: #ffffff;
+}
+
+/* Monospace Footer Structure definition rules */
+.tech-powered-footer {
+    margin-top: 24px;
+    /* Emulates const SizedBox(height: 24) structural breaks */
+    text-align: center;
+}
+
+.tech-powered-footer .footer-text {
+    font-size: 17px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 1px;
+}
+
+.tech-powered-footer .code-bracket {
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffffff;
+    transition: color 0.2s ease-in-out;
+}
+
+
+
+
+
 @media (max-width: 768px) {
     #lottie-smile {
-    transform: translateY(0px); /* Use positive to push down, negative to pull up */
-}
-    .hero-heading {
-        font-size: 38px;  
- 
+        transform: translateY(0px);
+        /* Use positive to push down, negative to pull up */
     }
-        .inline-svg-container.flutter-icon {
+
+    .hero-heading {
+        font-size: 38px;
+
+    }
+
+    .inline-svg-container.flutter-icon {
         width: 32px;
         height: 32px;
     }
- .line-row{
-      gap: 0px 12px; 
+
+    .line-row {
+        padding: 0px 165px;
+        gap: 0px 12px;
         line-height: 1.5;
- }
-    .shining-subtext{
-        margin: 12px auto 40px auto;
+    }
+
+    .shining-subtext {
+        padding:  0px 135px;
+    }
+
+.homepage-skills-wrapper {
+    width: 60%;
+}
+
+
+    .tech-powered-footer .code-bracket {
+        font-size: 16px;
+        color: #ef4444;
+    }
+
+    /* forced size: 16 & red */
+    .tech-powered-footer .footer-text {
+        font-size: 15px;
     }
 }
