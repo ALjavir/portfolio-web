@@ -3,17 +3,16 @@
    ========================================================================== */
 #home {
     position: relative;
-    /* Anchors absolute elements like the canvas inside here */
     width: 100%;
     min-height: 100vh;
-    /* Full screen height viewport tracking */
     display: flex;
+
+    /* 🔥 THE FIX: Tell the flexbox to stack your two div siblings top-to-bottom */
+    flex-direction: column;
+
     justify-content: center;
-    /* Horizontal alignment centering */
     align-items: center;
-    /* Vertical alignment centering */
     background-color: #000000;
-    /* Matches the shader background clear color */
     overflow: hidden;
 }
 
@@ -38,12 +37,13 @@
 #home-content {
     position: relative;
     z-index: 2;
-    /* Stack order: Sitting safely above the canvas graphics */
+
+    /* 🔥 THE FIX: Force the text wrapper to span the screen so it perfectly centers */
+    width: 100%;
+
     text-align: center;
-  
     padding: 0 24px;
 }
-
 
 /* ==========================================================================
    HERO TYPOGRAPHY PIPELINE (PC vs Phone Responsive Framework)
@@ -94,6 +94,10 @@
 }
 
 
+
+
+
+
 /* Flutter SVG Element via Mask Injection */
 .inline-svg-container.flutter-icon {
     display: inline-block;
@@ -113,6 +117,19 @@
 #lottie-smile {
     transform: translateY(-8px);
     /* Use positive to push down, negative to pull up */
+}
+
+#scroll-next-lottie.inline-icon-container {
+    /* ❌ CHANGE display: inline; to this: */
+    display: inline-block; 
+    
+    height: 50px;
+    width: 50px;
+    
+    /* ✅ ADD THESE TO FORCE VISIBILITY */
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
 }
 
 /* ==========================================================================
@@ -160,18 +177,33 @@
 
 
 
+/* 1. Make the track a horizontal container */
+
+/* 2. Ensure each group is also a horizontal flex container */
+
 
 
 /* Master structural block framing matching your 1100px desktop constraint */
-.homepage-skills-wrapper {
+#homepage-skills-wrapper {
+    position: relative;
+    z-index: 2;
     width: 100%;
     max-width: 1100px;
-    margin: 0 auto;
+
     padding: 0 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #ef4444;
+
+}
+
+.scroll-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    /* Prevents cards from wrapping to a new line */
 }
 
 /* Horizontal collection organizer alignment row */
@@ -180,21 +212,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+
 }
 
 /* THE SHADERMASK TRANSLATION: Pure CSS alpha transparency channel masking */
 .skills-slider-viewport {
-    height: 105px;
     flex: 1;
     overflow-x: auto;
-    display: flex;
-    scroll-behavior: smooth;
+    display: block;
+
     user-select: none;
 
     /* Matches stops: [0.0, 0.12, 0.88, 1.0] from Flutter source text exactly */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 /* Completely blind native scroll tracks across environments */
@@ -208,19 +242,23 @@
 
 /* The layout loop track channel */
 .infinite-scroll-track {
+    flex-wrap: nowrap;
     display: flex;
     align-items: center;
+    width: max-content;
 }
 
 /* Individual node columns matching mainAxisAlignment: center */
 .skill-card-column {
-    padding: 0 24px;
+    padding: 0 30px;
     display: flex;
+    flex-shrink: 0;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: transparent;
     border: none;
+    min-width: 140px;
 }
 
 .skill-card-column img {
@@ -230,11 +268,12 @@
 
 /* Dynamic sub-tag styling utilizing standard monospace font profiles */
 .skill-card-subtext {
-    font-size: 12px;
-    font-family: --font-sub;
+    padding: 6px 0px;
+    font-size: 20px;
     color: rgba(255, 255, 255, 0.38);
     /* Matches Colors.white38 precisely */
     text-align: center;
+    font-weight: 400;
 }
 
 /* Clean, decoupled arrow control styling definitions */
@@ -260,20 +299,22 @@
 
 /* Monospace Footer Structure definition rules */
 .tech-powered-footer {
-    margin-top: 24px;
+    margin-top: 30px;
+    font-size: 24px;
+    font-family: var(--font-navbar);
+    font-weight: 500;
     /* Emulates const SizedBox(height: 24) structural breaks */
     text-align: center;
 }
 
 .tech-powered-footer .footer-text {
-    font-size: 17px;
-    font-weight: bold;
+
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 1px;
 }
 
 .tech-powered-footer .code-bracket {
-    font-size: 18px;
+
     font-weight: 900;
     color: #ffffff;
     transition: color 0.2s ease-in-out;
@@ -281,11 +322,11 @@
 
 
 
-@media (min-width: 769px) {
- 
+@media (min-width: 768px) {
+
     /* Interactive hover class triggered dynamically through JS mouse listener */
-    .homepage-skills-wrapper.hovered-state .code-bracket {
-        color: #ef4444; 
+    #homepage-skills-wrapper.hovered-state .code-bracket {
+        color: #ef4444;
     }
 }
 
@@ -306,31 +347,43 @@
     }
 
     .line-row {
-        padding: 0px 170px;
+
         gap: 0px 12px;
         line-height: 1.5;
     }
 
-    .shining-subtext {
-        padding:  0px 135px;
+
+    .tech-powered-footer {
+        margin-top: 20px;
+
     }
 
-.homepage-skills-wrapper {
-    max-width: 768px;
-   padding: 0px 175px;
-}
-.skill-card-column img {
-    width: 38px;
-    height: 38px;
-}
+    .homepage-skills-wrapper {
+        max-width: 768px;
+
+    }
+
+    .skill-card-column {
+        padding: 0 20px;
+        min-width: 0px;
+    }
+
+    .skill-card-column img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .skill-card-subtext {
+        font-size: 16px;
+    }
 
     .tech-powered-footer .code-bracket {
-        font-size: 16px;
+        font-size: 21px;
         color: #ef4444;
     }
 
     /* forced size: 16 & red */
     .tech-powered-footer .footer-text {
-        font-size: 15px;
+        font-size: 20px;
     }
 }

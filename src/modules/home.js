@@ -3,6 +3,7 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase
 
 
 
+let activeSliderFrameId = null;
 
 export async function initHome() {
     console.log("🔹 Fetching technical armory catalog maps...");
@@ -10,31 +11,35 @@ export async function initHome() {
         const docRef = doc(db, "skill", "main");
         const docSnap = await getDoc(docRef);
 
-        const masterWrapper = document.querySelector(".homepage-skills-wrapper");
+        const masterWrapper = document.getElementById("homepage-skills-wrapper");
         const container = document.getElementById("skills-slider-container");
         const track = document.getElementById("skills-track");
 
         if (docSnap.exists() && track && container) {
             const skillsData = docSnap.data().data;
             const entries = Object.entries(skillsData);
+            let groupHTML = ""; 
 
-            let trackHTML = "";
+            entries.forEach(([skillName, skillDetails]) => {
+                groupHTML += `
+                    <div class="skill-card-column">
+                        <img src="${skillDetails.image}" alt="${skillName}" />
+                        <span class="skill-card-subtext">${skillName}</span>
+                    </div>
+                `;
+            });
 
-            // Duplicate array sequences to maintain loop logic chains
-            for (let loopCount = 0; loopCount < 2; loopCount++) {
-                entries.forEach(([skillName, skillDetails]) => {
-                    trackHTML += `
-                        <div class="skill-card-column">
-                            <img src="${skillDetails.image}" alt="${skillName}" loading="lazy" />
-                            <span class="skill-card-subtext">${skillName}</span>
-                        </div>
-                    `;
-                });
-            }
-            track.innerHTML = trackHTML;
+            track.innerHTML = `
+                <div class="scroll-group">${groupHTML}</div>
+                <div class="scroll-group">${groupHTML}</div>
+                <div class="scroll-group">${groupHTML}</div>
+                <div class="scroll-group">${groupHTML}</div>
+            `;
 
-            // Initialize scroll manager configurations
-            bindVelocityScrollEngine(masterWrapper, container, track);
+            requestAnimationFrame(() => {
+                bindVelocityScrollEngine(masterWrapper, container, track);
+                if (masterWrapper) masterWrapper.classList.add("is-loaded");
+            });
         }
     }
     catch (error) {
@@ -43,55 +48,94 @@ export async function initHome() {
 }
 
 function bindVelocityScrollEngine(masterWrapper, container, track) {
-    let scrollSpeed = 1.0;       // Velocity configuration default
-    let scrollDirection = 1;     // Tracks dynamic wheel slide orientation
-    let frameId;
+    // 2. GHOST HUNTER: If a loop is already running from a previous page visit, kill it immediately.
+    if (activeSliderFrameId) {
+        cancelAnimationFrame(activeSliderFrameId);
+    }
 
-    // Set scroll position to center index space mimicking initialScrollOffset
-    container.scrollLeft = track.scrollWidth / 4;
+    let baseSpeed = 1.0;       
+    let scrollDirection = 1; 
+    let clickBoost = 0; 
+    const scrollGroup = track.querySelector('.scroll-group');
+    
+    // Safety check: Ensure the group actually exists before doing math
+    if (!scrollGroup) return;
 
-    // Mouse interactive state listeners matching your widget state actions
+    let exactScroll = scrollGroup.getBoundingClientRect().width; 
+    container.scrollLeft = exactScroll;
+
+    // Hover listeners
     container.addEventListener("mouseenter", () => {
-        scrollSpeed = 0.25; // Slow down velocity smoothly down to 0.25
+        baseSpeed = 0.25; 
         if (masterWrapper) masterWrapper.classList.add("hovered-state");
     });
     
     container.addEventListener("mouseleave", () => {
-        scrollSpeed = 1.0;  // Restore normal velocity trace speed
+        baseSpeed = 1.0;  
         if (masterWrapper) masterWrapper.classList.remove("hovered-state");
     });
 
-    // High performance UI runtime looping step ticker sequence
+    // The Engine Loop
     function scrollTick() {
-        container.scrollLeft += (scrollSpeed * scrollDirection);
-
-        // Infinite positioning warp boundaries configuration
-        const boundaryLimit = track.scrollWidth / 2;
-        if (container.scrollLeft >= boundaryLimit) {
-            container.scrollLeft = 0;
-        } else if (container.scrollLeft <= 0) {
-            container.scrollLeft = boundaryLimit;
+        // 3. PAGE CHANGE SAFETY: Did the user navigate away? If the container is gone from the DOM, shut down the engine.
+        if (!document.getElementById("skills-slider-container")) {
+            activeSliderFrameId = null;
+            return; 
         }
 
-        frameId = requestAnimationFrame(scrollTick);
-    }
-    frameId = requestAnimationFrame(scrollTick);
+        let groupWidth = scrollGroup.getBoundingClientRect().width;
 
-    // Manual Nav Arrow Controls Click Binding Actions
+        // 4. RENDER SAFETY: If the page is hidden or CSS hasn't fully painted, width is 0. 
+        // Do not run the math, just wait for the next frame.
+        if (groupWidth === 0) {
+            activeSliderFrameId = requestAnimationFrame(scrollTick);
+            return;
+        }
+
+        // Apply friction to the manual click momentum
+        clickBoost *= 0.92; 
+        if (clickBoost < 0.1) clickBoost = 0;
+
+        let totalSpeed = baseSpeed + clickBoost;
+        exactScroll += (totalSpeed * scrollDirection);
+
+        // Infinite loop math
+        if (exactScroll >= groupWidth * 2) {
+            exactScroll -= groupWidth;
+        } 
+        else if (exactScroll <= 0) {
+            exactScroll += groupWidth;
+        }
+
+        // Apply math to physical DOM
+        container.scrollLeft = exactScroll;
+
+        // Keep the loop running and track its ID
+        activeSliderFrameId = requestAnimationFrame(scrollTick);
+    }
+    
+    // Boot the engine
+    activeSliderFrameId = requestAnimationFrame(scrollTick);
+
+    // Button controls
     const btnLeft = document.getElementById("slider-btn-left");
     const btnRight = document.getElementById("slider-btn-right");
 
     if (btnLeft && btnRight) {
-        btnLeft.addEventListener("click", () => {
-            scrollDirection = -1; // Change loop direction trajectory
-            scrollSpeed = 1.0;
-            container.scrollBy({ left: -180, behavior: "smooth" }); // 180px jump increments
+        // Overwrite old event listeners by cloning nodes (prevents duplicate click events if initHome runs twice)
+        const newBtnLeft = btnLeft.cloneNode(true);
+        const newBtnRight = btnRight.cloneNode(true);
+        btnLeft.parentNode.replaceChild(newBtnLeft, btnLeft);
+        btnRight.parentNode.replaceChild(newBtnRight, btnRight);
+
+        newBtnLeft.addEventListener("click", () => {
+            scrollDirection = -1; 
+            clickBoost = 25; 
         });
 
-        btnRight.addEventListener("click", () => {
-            scrollDirection = 1;  // Restore forward trajectory loop parameters
-            scrollSpeed = 1.0;
-            container.scrollBy({ left: 180, behavior: "smooth" });
+        newBtnRight.addEventListener("click", () => {
+            scrollDirection = 1; 
+            clickBoost = 25; 
         });
     }
 }

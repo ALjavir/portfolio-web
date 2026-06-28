@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // cssJavaScript-----------------------------------------------------
     initHomeShader();
     initlottie("lottie-smile", "assets/icons/smile.json");
+    initlottie("scroll-next-lottie", "assets/icons/scroll_down.json");
     //------------------------------------------------------------------
 
 
