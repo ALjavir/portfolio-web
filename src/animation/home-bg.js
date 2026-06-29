@@ -5,7 +5,7 @@ export function initHomeShader() {
     const canvas = document.getElementById("bg-canvas");
     if (!canvas) return;
 
-    // 1. Core GLSL Shader Programs extracted from your code asset
+    // 1. Core GLSL Shader Programs
     const vertexShader = `
         attribute vec3 position;
         void main() {
@@ -20,9 +20,25 @@ export function initHomeShader() {
         uniform float xScale;
         uniform float yScale;
         uniform float distortion;
+        uniform float angle;
+        
+        // ✅ NEW: Variables to control the macro "S" curve path
+        uniform float pathFrequency;
+        uniform float pathAmplitude;
 
         void main() {
             vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / min(resolution.x, resolution.y);
+            
+            // 1. Rotate the grid to set the base direction
+            float c = cos(angle);
+            float s = sin(angle);
+            p = vec2(p.x * c - p.y * s, p.x * s + p.y * c);
+
+            // ✅ 2. Warp the grid to create the macro "S" curve pattern
+            // This bends the straight line into the red shape you drew
+            p.y += cos(p.x * pathFrequency) * pathAmplitude;
+
+            // 3. Draw the glowing micro waves along the newly warped path
             float d = length(p) * distortion;
             
             float rx = p.x * (1.0 + d);
@@ -37,28 +53,30 @@ export function initHomeShader() {
         }
     `;
 
-    // 2. Initialize Three.js Structural Architecture Environment
+    // 2. Initialize Three.js Structural Architecture
     const scene = new THREE.Scene();
     const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
-    
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Lock performance curves safely
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(new THREE.Color(0x000000));
 
-    // Orthographic Camera is used for flat 2D shader plane projections
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-    // 3. Mapping Configuration Values (The Uniform Blocks)
+    // 3. Mapping Configuration Values
     const uniforms = {
         resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
         time: { value: 0.0 },
         xScale: { value: 1.0 },
         yScale: { value: 0.5 },
         distortion: { value: 0.05 },
+        angle: { value: 0.0 },
+
+        // ✅ NEW: Initialize the curve variables
+        pathFrequency: { value: 0.0 },
+        pathAmplitude: { value: 0.0 }
     };
 
-    // Create a simple full-screen bounding box quad plane geometry
     const geometry = new THREE.PlaneGeometry(2, 2);
-
     const material = new THREE.RawShaderMaterial({
         vertexShader,
         fragmentShader,
@@ -73,25 +91,40 @@ export function initHomeShader() {
     function handleResize() {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        
+
         renderer.setSize(width, height, false);
         uniforms.resolution.value.set(width, height);
+
+        if (width <= 768) {
+            // Mobile: Point Top-Right to Bottom-Left (+0.8 radians)
+            uniforms.angle.value = -0.1
+
+            // ✅ Mobile: Turn ON the "S" Curve Warp
+            uniforms.pathFrequency.value =0 //ow many bends the line  as   
+            uniforms.pathAmplitude.value = 0                                             
+
+            uniforms.yScale.value = 1
+        } else {
+            // Desktop: Straight horizontal line (Turn off the warp)
+            uniforms.angle.value = 0.0;
+            uniforms.pathFrequency.value = 0.0;
+            uniforms.pathAmplitude.value = 0.0;
+            uniforms.yScale.value = 0.5;
+        }
     }
 
     // 5. The Active Animation Render Frame Loop 
     let animationId;
     function animate() {
-        uniforms.time.value += 0.01; // Updates elapsed time matrix variables step by step
+        uniforms.time.value += 0.01;
         renderer.render(scene, camera);
         animationId = requestAnimationFrame(animate);
     }
 
-    // Initialize systems, subscribe window metrics triggers
     handleResize();
     animate();
     window.addEventListener("resize", handleResize);
 
-    // Return an optional teardown hook function (Just like disposing a Flutter state)
     return () => {
         cancelAnimationFrame(animationId);
         window.removeEventListener("resize", handleResize);

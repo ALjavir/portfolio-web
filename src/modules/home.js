@@ -54,7 +54,7 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
     }
 
     let baseSpeed = 1.0;       
-    let scrollDirection = 1; 
+    let scrollDirection = -1; 
     let clickBoost = 0; 
     const scrollGroup = track.querySelector('.scroll-group');
     
