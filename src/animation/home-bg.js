@@ -70,8 +70,6 @@ export function initHomeShader() {
         yScale: { value: 0.5 },
         distortion: { value: 0.05 },
         angle: { value: 0.0 },
-
-        // ✅ NEW: Initialize the curve variables
         pathFrequency: { value: 0.0 },
         pathAmplitude: { value: 0.0 }
     };
@@ -89,30 +87,34 @@ export function initHomeShader() {
 
     // 4. Smooth Layout Canvas Resizing Engine
     function handleResize() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        
-        renderer.setSize(width, height, false);
-        const physicalWidth = renderer.domElement.width;
-        const physicalHeight = renderer.domElement.height;
-        uniforms.resolution.value.set(physicalWidth, physicalHeight);
-        renderer.setSize(width, height, false);
-        uniforms.resolution.value.set(width, height);
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    // 1. Tell Three.js to adjust the viewport size
+    renderer.setSize(width, height, false);
+    
+    // 2. Capture the TRUE hardware pixels from the canvas buffer
+    const physicalWidth = renderer.domElement.width;
+    const physicalHeight = renderer.domElement.height;
 
-        if (width <= 768) {
-            // Mobile: Point Top-Right to Bottom-Left (+0.8 radians)
-          uniforms.angle.value = -0.1; 
+    // 3. Pass the physical dimensions to the shader uniform (DO NOT OVERWRITE THIS BELOW!)
+    uniforms.resolution.value.set(physicalWidth, physicalHeight);
+
+    // 4. Responsive parameters based on viewport width
+    if (width <= 768) {
+        // Mobile layout parameters
+        uniforms.angle.value = -0.1; 
         uniforms.pathFrequency.value = 1; 
         uniforms.pathAmplitude.value = 0.1; 
         uniforms.yScale.value = 1;
-        } else {
-            // Desktop: Straight horizontal line (Turn off the warp)
-            uniforms.angle.value = 0.0;
-            uniforms.pathFrequency.value = 0.0;
-            uniforms.pathAmplitude.value = 0.0;
-            uniforms.yScale.value = 0.5;
-        }
+    } else {
+        // Desktop layout parameters
+        uniforms.angle.value = 0.0;
+        uniforms.pathFrequency.value = 0.0;
+        uniforms.pathAmplitude.value = 0.0;
+        uniforms.yScale.value = 0.5;
     }
+}
 
     // 5. The Active Animation Render Frame Loop 
     let animationId;
