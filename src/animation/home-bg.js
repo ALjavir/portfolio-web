@@ -93,6 +93,11 @@ export function initHomeShader() {
         const height = window.innerHeight;
 
         renderer.setSize(width, height, false);
+        const physicalWidth = renderer.domElement.width;
+        const physicalHeight = renderer.domElement.height;
+        
+        uniforms.resolution.value.set(physicalWidth, physicalHeight);
+        renderer.setSize(width, height, false);
         uniforms.resolution.value.set(width, height);
 
         if (width <= 768) {
@@ -100,8 +105,8 @@ export function initHomeShader() {
             uniforms.angle.value = -0.1
 
             // ✅ Mobile: Turn ON the "S" Curve Warp
-            uniforms.pathFrequency.value =0 //ow many bends the line  as   
-            uniforms.pathAmplitude.value = 0                                             
+            uniforms.pathFrequency.value = 0 //ow many bends the line  as   
+            uniforms.pathAmplitude.value = 0
 
             uniforms.yScale.value = 1
         } else {
