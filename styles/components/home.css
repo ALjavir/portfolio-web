@@ -6,8 +6,6 @@
     width: 100%;
     min-height: 100vh;
     display: flex;
-
-    /* 🔥 THE FIX: Tell the flexbox to stack your two div siblings top-to-bottom */
     flex-direction: column;
 
     justify-content: center;
@@ -37,10 +35,7 @@
 #home-content {
     position: relative;
     z-index: 2;
-
-    /* 🔥 THE FIX: Force the text wrapper to span the screen so it perfectly centers */
     width: 100%;
-
     text-align: center;
     padding: 200px 24px;
 }
@@ -71,8 +66,6 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
-
-
 }
 
 
@@ -129,8 +122,8 @@
     padding: 0;
     margin-top: 85px;
     margin-bottom: 50px;
-    z-index: 999; 
-  
+    z-index: 999;
+
 }
 
 /* ==========================================================================
@@ -334,29 +327,31 @@
 @media (max-width: 768px) {
 
 
-#home-content {
-    position: relative;
-    z-index: 2;
+    #home-content {
+        position: relative;
+        z-index: 2;
 
-    /* 🔥 THE FIX: Force the text wrapper to span the screen so it perfectly centers */
-    width: 100%;
+        /* 🔥 THE FIX: Force the text wrapper to span the screen so it perfectly centers */
+        width: 100%;
 
-    text-align: center;
-    padding: 170px 24px;
-}
+        text-align: center;
+        padding: 170px 24px;
+    }
 
     #lottie-smile {
-        transform: translateY(0px);
+        transform: translateY(-1px);
+        height: 42px;
+        width: 42px;
         /* Use positive to push down, negative to pull up */
     }
 
     #scroll-next-lottie {
-   
-    height: 70px;
-    width: 70px;
 
-  
-}
+        height: 70px;
+        width: 70px;
+
+
+    }
 
     .hero-heading {
         font-size: 38px;
@@ -374,9 +369,10 @@
         line-height: 1.5;
     }
 
-.shining-subtext{
-    font-size: 18px;
-}
+    .shining-subtext {
+        font-size: 18px;
+    }
+
     .tech-powered-footer {
         margin-top: 20px;
 
@@ -388,7 +384,7 @@
     }
 
     .skill-card-column {
-       
+
         min-width: 0px;
     }
 
