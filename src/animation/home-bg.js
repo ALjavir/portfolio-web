@@ -91,24 +91,20 @@ export function initHomeShader() {
     function handleResize() {
         const width = window.innerWidth;
         const height = window.innerHeight;
-
+        
         renderer.setSize(width, height, false);
         const physicalWidth = renderer.domElement.width;
         const physicalHeight = renderer.domElement.height;
-        
         uniforms.resolution.value.set(physicalWidth, physicalHeight);
         renderer.setSize(width, height, false);
         uniforms.resolution.value.set(width, height);
 
         if (width <= 768) {
             // Mobile: Point Top-Right to Bottom-Left (+0.8 radians)
-            uniforms.angle.value = -0.1
-
-            // ✅ Mobile: Turn ON the "S" Curve Warp
-            uniforms.pathFrequency.value = 0 //ow many bends the line  as   
-            uniforms.pathAmplitude.value = 0
-
-            uniforms.yScale.value = 1
+          uniforms.angle.value = -0.1; 
+        uniforms.pathFrequency.value = 1; 
+        uniforms.pathAmplitude.value = 0.1; 
+        uniforms.yScale.value = 1;
         } else {
             // Desktop: Straight horizontal line (Turn off the warp)
             uniforms.angle.value = 0.0;
