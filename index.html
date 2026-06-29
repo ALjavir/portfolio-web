@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/components/navbar.css">
     <link rel="stylesheet" href="styles/components/home.css">
+    <link rel="stylesheet" href="styles/components/skills.css">
 </head>
 
 <body>
@@ -110,15 +111,21 @@
                 </div>
             </div>
 
-           <div id="scroll-next-lottie" class="inline-icon-container"></div>
+            <div id="scroll-next-lottie" class="inline-icon-container"></div>
         </section>
-
-
-
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+        <canvas id="sparks"></canvas>
 
         <section id="skills" class="section-block">
-            <h2 class="section-title">My Skills</h2>
-            <div id="skills-grid" class="grid-layout"></div>
+            <div id="skills-content">
+                <h1 class="skills-heading">
+                    <span class="line-row">
+                        MY TECHNICAL <span class="accent-text">EXPERTISE</span>
+                    </span>
+                   
+                </h1>
+                <p class="shining-subtext">Technologies and engineering practices. I've mastered through building real-world applications.</p>
+            </div>
         </section>
 
         <section id="projects" class="section-block">
@@ -136,8 +143,6 @@
     <footer class="main-footer">
         <p>&copy; 2026 Al Javir. Built with Pure Web Technologies.</p>
     </footer>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script type="module" src="src/main.js"></script>
 </body>

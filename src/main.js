@@ -10,6 +10,7 @@ import { initProjects } from './modules/projects.js';
 import { initContact } from './modules/contact.js';
 import { initlottie } from './animation/lottie-ani.js';
 import { initHomeShader } from "./animation/home-bg.js";
+import { SparkEffect } from "./animation/sparkEffect.js";
 /**
  * document.addEventListener("DOMContentLoaded", ...) acts exactly like 
  * Flutter's initialization blocks before calling runApp().
@@ -51,6 +52,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     initHomeShader();
     initlottie("lottie-smile", "assets/icons/smile.json");
     initlottie("scroll-next-lottie", "assets/icons/scroll_down.json");
+
+
+    new SparkEffect({
+        selector: '#sparks',
+        amount: 3000,
+        direction: { x: -0.5, y: 1 }
+    });
+
     //------------------------------------------------------------------
 
 

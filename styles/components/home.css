@@ -42,7 +42,7 @@
     width: 100%;
 
     text-align: center;
-    padding: 160px 24px;
+    padding: 200px 24px;
 }
 
 /* ==========================================================================
@@ -127,7 +127,7 @@
     position: relative;
     vertical-align: middle;
     padding: 0;
-    margin-top: 100px;
+    margin-top: 85px;
     margin-bottom: 50px;
     z-index: 999; 
   
@@ -138,7 +138,7 @@
    ========================================================================== */
 .shining-subtext {
     font-family: var(--font-sub, sans-serif);
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-size: 21px;
     margin: 10px auto 0px auto;
     max-width: 650px;
     line-height: 1.6;
@@ -251,7 +251,7 @@
 
 /* Individual node columns matching mainAxisAlignment: center */
 .skill-card-column {
-    padding: 0 20px;
+    padding: 0 18px;
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
@@ -263,8 +263,8 @@
 }
 
 .skill-card-column img {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
 }
 
 /* Dynamic sub-tag styling utilizing standard monospace font profiles */
@@ -301,7 +301,7 @@
 /* Monospace Footer Structure definition rules */
 .tech-powered-footer {
     margin-top: 30px;
-    font-size: 24px;
+    font-size: 23px;
     font-family: var(--font-navbar);
     font-weight: 500;
     /* Emulates const SizedBox(height: 24) structural breaks */
@@ -332,6 +332,19 @@
 }
 
 @media (max-width: 768px) {
+
+
+#home-content {
+    position: relative;
+    z-index: 2;
+
+    /* 🔥 THE FIX: Force the text wrapper to span the screen so it perfectly centers */
+    width: 100%;
+
+    text-align: center;
+    padding: 170px 24px;
+}
+
     #lottie-smile {
         transform: translateY(0px);
         /* Use positive to push down, negative to pull up */
@@ -361,7 +374,9 @@
         line-height: 1.5;
     }
 
-
+.shining-subtext{
+    font-size: 18px;
+}
     .tech-powered-footer {
         margin-top: 20px;
 
