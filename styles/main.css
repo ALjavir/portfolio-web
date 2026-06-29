@@ -75,16 +75,7 @@ body {
 
 
 }
-#sparks {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;           /* ✅ Sits right above the body element */
-    pointer-events: none; 
-    background: transparent;
-}
+
 h1 {
   /* Headings need to scale much louder than body text! */
   font-size: clamp(28px, 4vw + 12px, 48px);

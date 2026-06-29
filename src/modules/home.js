@@ -1,24 +1,36 @@
 import { db } from "../config/firebase_init.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
+import { DotLoader } from '../animation/dotLoader.js';
 
 
 let activeSliderFrameId = null;
 
 export async function initHome() {
     console.log("🔹 Fetching technical armory catalog maps...");
+    
+    const masterWrapper = document.getElementById("homepage-skills-wrapper");
+    const container = document.getElementById("skills-slider-container");
+    const track = document.getElementById("skills-track");
+
+    // Spawn the loader instance
+    const loaderInstance = new DotLoader({ duration: 120 });
+
+    if (masterWrapper) {
+        // 🌟 Set the master section to loading state and insert the dots
+        masterWrapper.classList.add("is-loading");
+        masterWrapper.classList.remove("is-loaded");
+        masterWrapper.appendChild(loaderInstance.element);
+    }
+
     try {
         const docRef = doc(db, "skill", "main");
         const docSnap = await getDoc(docRef);
 
-        const masterWrapper = document.getElementById("homepage-skills-wrapper");
-        const container = document.getElementById("skills-slider-container");
-        const track = document.getElementById("skills-track");
 
         if (docSnap.exists() && track && container) {
             const skillsData = docSnap.data().data;
             const entries = Object.entries(skillsData);
-            let groupHTML = ""; 
+            let groupHTML = "";
 
             entries.forEach(([skillName, skillDetails]) => {
                 groupHTML += `
@@ -38,13 +50,18 @@ export async function initHome() {
 
             requestAnimationFrame(() => {
                 bindVelocityScrollEngine(masterWrapper, container, track);
-                if (masterWrapper) masterWrapper.classList.add("is-loaded");
+                if (masterWrapper) {
+                    masterWrapper.classList.remove("is-loading");
+                    masterWrapper.classList.add("is-loaded");
+                }
             });
-        }
+        }loaderInstance.destroy(); 
     }
     catch (error) {
-        console.error("❌ Slider compilation halted:", error);
+        // 🔍 This will catch and log any silent breakages blocking your data
+        console.error("❌ Slider compilation halted due to an engine exception:", error);
     }
+ 
 }
 
 function bindVelocityScrollEngine(masterWrapper, container, track) {
@@ -53,25 +70,25 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
         cancelAnimationFrame(activeSliderFrameId);
     }
 
-    let baseSpeed = 1.0;       
-    let scrollDirection = -1; 
-    let clickBoost = 0; 
+    let baseSpeed = 1.0;
+    let scrollDirection = -1;
+    let clickBoost = 0;
     const scrollGroup = track.querySelector('.scroll-group');
-    
+
     // Safety check: Ensure the group actually exists before doing math
     if (!scrollGroup) return;
 
-    let exactScroll = scrollGroup.getBoundingClientRect().width; 
+    let exactScroll = scrollGroup.getBoundingClientRect().width;
     container.scrollLeft = exactScroll;
 
     // Hover listeners
     container.addEventListener("mouseenter", () => {
-        baseSpeed = 0.25; 
+        baseSpeed = 0.25;
         if (masterWrapper) masterWrapper.classList.add("hovered-state");
     });
-    
+
     container.addEventListener("mouseleave", () => {
-        baseSpeed = 1.0;  
+        baseSpeed = 1.0;
         if (masterWrapper) masterWrapper.classList.remove("hovered-state");
     });
 
@@ -80,7 +97,7 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
         // 3. PAGE CHANGE SAFETY: Did the user navigate away? If the container is gone from the DOM, shut down the engine.
         if (!document.getElementById("skills-slider-container")) {
             activeSliderFrameId = null;
-            return; 
+            return;
         }
 
         let groupWidth = scrollGroup.getBoundingClientRect().width;
@@ -93,7 +110,7 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
         }
 
         // Apply friction to the manual click momentum
-        clickBoost *= 0.92; 
+        clickBoost *= 0.92;
         if (clickBoost < 0.1) clickBoost = 0;
 
         let totalSpeed = baseSpeed + clickBoost;
@@ -102,7 +119,7 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
         // Infinite loop math
         if (exactScroll >= groupWidth * 2) {
             exactScroll -= groupWidth;
-        } 
+        }
         else if (exactScroll <= 0) {
             exactScroll += groupWidth;
         }
@@ -113,7 +130,7 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
         // Keep the loop running and track its ID
         activeSliderFrameId = requestAnimationFrame(scrollTick);
     }
-    
+
     // Boot the engine
     activeSliderFrameId = requestAnimationFrame(scrollTick);
 
@@ -128,14 +145,31 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
         btnLeft.parentNode.replaceChild(newBtnLeft, btnLeft);
         btnRight.parentNode.replaceChild(newBtnRight, btnRight);
 
+   const width = window.innerWidth;
+       
+
         newBtnLeft.addEventListener("click", () => {
-            scrollDirection = -1; 
-            clickBoost = 25; 
+            scrollDirection = -1;
+            if (width <= 768) 
+
+                clickBoost = 8
+             
+            else
+            
+            clickBoost = 25;
+
+
         });
 
         newBtnRight.addEventListener("click", () => {
-            scrollDirection = 1; 
-            clickBoost = 25; 
+            scrollDirection = 1;
+           if (width <= 768) 
+
+                clickBoost = 8
+             
+            else
+            
+            clickBoost = 25;
         });
     }
 }
