@@ -103,10 +103,10 @@ export function initHomeShader() {
     // 4. Responsive parameters based on viewport width
     if (width <= 768) {
         // Mobile layout parameters
-        uniforms.angle.value = -0.1; 
-        uniforms.pathFrequency.value = 1; 
-        uniforms.pathAmplitude.value = 0.1; 
-        uniforms.yScale.value = 1;
+        uniforms.angle.value = 0; 
+        uniforms.pathFrequency.value = 0; 
+        uniforms.pathAmplitude.value = 0; 
+        uniforms.yScale.value = 1.5;
     } else {
         // Desktop layout parameters
         uniforms.angle.value = 0.0;

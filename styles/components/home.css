@@ -393,6 +393,12 @@
         height: 38px;
     }
 
+    .skills-slider-viewport .scroll-group .infinite-scroll-track {
+        touch-action: pan-y !important;
+        user-select: none;
+    }
+    
+
     .skill-card-subtext {
         font-size: 16px;
     }

@@ -54,11 +54,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     initlottie("scroll-next-lottie", "assets/icons/scroll_down.json");
 
 
+    const sparksCanvas = document.querySelector('#sparks');
     new SparkEffect({
         selector: '#sparks',
-        amount: 3000,
-        direction: { x: -0.5, y: 1 }
+        amount: 3000,           
+        direction: { x: -0.5, y: 1 } 
     });
+    function toggleSparksVisibility() {
+        const homeHeight = window.innerHeight;
+        if (window.scrollY < homeHeight - 100) {
+            sparksCanvas.style.display = 'none';
+        } else {
+            sparksCanvas.style.display = 'block';
+        }
+    }
+    toggleSparksVisibility();
+    window.addEventListener('scroll', toggleSparksVisibility);
 
     //------------------------------------------------------------------
 
