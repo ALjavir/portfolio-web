@@ -1,42 +1,49 @@
 import { db } from "../config/firebase_init.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { DotLoader } from '../animation/dotLoader.js';
+import { CubeLoader } from "../animation/cubeLoader.js";
 
 
 let activeSliderFrameId = null;
 
+
+
+let cachedSkillsData = null;
+export function getLoadedSkills() {
+    return cachedSkillsData;
+}
+
+
+
+
+
+
 export async function initHome() {
     console.log("🔹 Fetching technical armory catalog maps...");
-    
-    const masterWrapper = document.getElementById("homepage-skills-wrapper");
-    const container = document.getElementById("skills-slider-container");
-    const track = document.getElementById("skills-track");
 
-    // Spawn the loader instance
-    const loaderInstance = new DotLoader({ duration: 120 });
+    const masterWrapper = document.getElementById("homepage-tech-wrapper");
+    const container = document.getElementById("tech-slider-container");
+    const track = document.getElementById("tech-track");
 
-    if (masterWrapper) {
-        // 🌟 Set the master section to loading state and insert the dots
-        masterWrapper.classList.add("is-loading");
-        masterWrapper.classList.remove("is-loaded");
-        masterWrapper.appendChild(loaderInstance.element);
-    }
+    // 🛠️ Initialize and mount the decoupled component
+    const loader = new CubeLoader(masterWrapper);
+    loader.mount();
 
     try {
+
         const docRef = doc(db, "skill", "main");
         const docSnap = await getDoc(docRef);
 
-
         if (docSnap.exists() && track && container) {
-            const skillsData = docSnap.data().data;
-            const entries = Object.entries(skillsData);
+            cachedSkillsData = docSnap.data().skillDetail;
+            const techData = docSnap.data().data;
+            const entries = Object.entries(techData);
             let groupHTML = "";
 
-            entries.forEach(([skillName, skillDetails]) => {
+            entries.forEach(([techName, techDetails]) => {
                 groupHTML += `
-                    <div class="skill-card-column">
-                        <img src="${skillDetails.image}" alt="${skillName}" />
-                        <span class="skill-card-subtext">${skillName}</span>
+                    <div class="tech-card-column">
+                        <img src="${techDetails.image}" alt="${techName}" />
+                        <span class="tech-card-subtext">${techName}</span>
                     </div>
                 `;
             });
@@ -51,18 +58,21 @@ export async function initHome() {
             requestAnimationFrame(() => {
                 bindVelocityScrollEngine(masterWrapper, container, track);
                 if (masterWrapper) {
-                    masterWrapper.classList.remove("is-loading");
                     masterWrapper.classList.add("is-loaded");
                 }
             });
-        }loaderInstance.destroy(); 
+        }
+        loader.unmount()
     }
     catch (error) {
-        // 🔍 This will catch and log any silent breakages blocking your data
+       
         console.error("❌ Slider compilation halted due to an engine exception:", error);
     }
- 
 }
+
+
+
+
 
 function bindVelocityScrollEngine(masterWrapper, container, track) {
     // 2. GHOST HUNTER: If a loop is already running from a previous page visit, kill it immediately.
@@ -95,7 +105,7 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
     // The Engine Loop
     function scrollTick() {
         // 3. PAGE CHANGE SAFETY: Did the user navigate away? If the container is gone from the DOM, shut down the engine.
-        if (!document.getElementById("skills-slider-container")) {
+        if (!document.getElementById("tech-slider-container")) {
             activeSliderFrameId = null;
             return;
         }
@@ -145,31 +155,24 @@ function bindVelocityScrollEngine(masterWrapper, container, track) {
         btnLeft.parentNode.replaceChild(newBtnLeft, btnLeft);
         btnRight.parentNode.replaceChild(newBtnRight, btnRight);
 
-   const width = window.innerWidth;
-       
+        const width = window.innerWidth;
+
 
         newBtnLeft.addEventListener("click", () => {
             scrollDirection = -1;
-            if (width <= 768) 
-
+            if (width <= 768)
                 clickBoost = 8
-             
             else
-            
-            clickBoost = 25;
-
+                clickBoost = 25;
 
         });
 
         newBtnRight.addEventListener("click", () => {
             scrollDirection = 1;
-           if (width <= 768) 
-
+            if (width <= 768)
                 clickBoost = 8
-             
             else
-            
-            clickBoost = 25;
+                clickBoost = 25;
         });
     }
 }

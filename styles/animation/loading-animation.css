@@ -1,0 +1,77 @@
+/* 🌟 3D CUBE LOADER GRAPHICS ENGINE */
+
+@keyframes rotateCube {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+/* Layout container centering wrapper */
+.cube-loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    height: 220px;
+    width: 100%;
+}
+
+/* 3D Box canvas alignment viewport */
+.cube {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 4s linear infinite;
+}
+
+/* Balanced Face parameters */
+.cube-face {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgb(255, 255, 255);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    color: #ffffff;
+}
+
+/* Face Vector Coordinate Mapping Matrix (Offset: 15px) */
+.face-front  { transform: rotateY(0deg) translateZ(20px); }
+.face-back   { transform: rotateY(180deg) translateZ(20px); }
+.face-right  { transform: rotateY(90deg) translateZ(20px); }
+.face-left   { transform: rotateY(-90deg) translateZ(20px); }
+.face-top    { transform: rotateX(90deg) translateZ(20px); }
+.face-bottom { transform: rotateX(-90deg) translateZ(20px); }
+
+/* Descriptive state sub-heading text styles */
+.cube-status {
+    font-size: 16px;
+    font-weight: 500;
+     font-family: var(--font-sub);
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    text-transform: capitalize;
+}
+
+/* GLOBAL COMPONENT WRAPPER CONCEALMENT MASK */
+.is-loading-component {
+    min-height: 220px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+/* Automatically collapses native children context layers while mounted */
+.is-loading-component > *:not(.cube-loader-container) {
+    display: none !important;
+}
+

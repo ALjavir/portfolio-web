@@ -137,7 +137,7 @@
 
 
 /* Master structural block framing matching your 1100px desktop constraint */
-#homepage-skills-wrapper {
+#homepage-tech-wrapper {
     position: relative;
     z-index: 2;
     width: 100%;
@@ -160,7 +160,7 @@
 }
 
 /* Horizontal collection organizer alignment row */
-.skills-slider-row {
+.tech-slider-row {
     width: 100%;
     display: flex;
     align-items: center;
@@ -169,7 +169,7 @@
 }
 
 /* THE SHADERMASK TRANSLATION: Pure CSS alpha transparency channel masking */
-.skills-slider-viewport {
+.tech-slider-viewport {
     flex: 1;
     overflow-x: auto;
     display: block;
@@ -185,11 +185,11 @@
 }
 
 /* Completely blind native scroll tracks across environments */
-.skills-slider-viewport::-webkit-scrollbar {
+.tech-slider-viewport::-webkit-scrollbar {
     display: none;
 }
 
-.skills-slider-viewport {
+.tech-slider-viewport {
     scrollbar-width: none;
 }
 
@@ -202,7 +202,7 @@
 }
 
 /* Individual node columns matching mainAxisAlignment: center */
-.skill-card-column {
+.tech-card-column {
     padding: 0 18px;
     display: flex;
     flex-shrink: 0;
@@ -214,13 +214,13 @@
     min-width: 140px;
 }
 
-.skill-card-column img {
+.tech-card-column img {
     width: 45px;
     height: 45px;
 }
 
 /* Dynamic sub-tag styling utilizing standard monospace font profiles */
-.skill-card-subtext {
+.tech-card-subtext {
     padding: 6px 0px;
     font-size: 17px;
     color: rgba(255, 255, 255, 0.38);
@@ -278,7 +278,7 @@
 @media (min-width: 768px) {
 
     /* Interactive hover class triggered dynamically through JS mouse listener */
-    #homepage-skills-wrapper.hovered-state .code-bracket {
+    #homepage-tech-wrapper.hovered-state .code-bracket {
         color: #ef4444;
     }
 }
@@ -342,23 +342,23 @@
 
     }
 
-    .skill-card-column {
+    .tech-card-column {
 
         min-width: 0px;
     }
 
-    .skill-card-column img {
+    .tech-card-column img {
         width: 38px;
         height: 38px;
     }
 
-    .skills-slider-viewport .scroll-group .infinite-scroll-track {
+    .tech-slider-viewport .scroll-group .infinite-scroll-track {
         touch-action: pan-y !important;
         user-select: none;
     }
     
 
-    .skill-card-subtext {
+    .tech-card-subtext {
         font-size: 16px;
     }
 

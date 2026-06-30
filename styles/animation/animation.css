@@ -48,37 +48,32 @@
 
 /* 1. Prevent the container from flattening to 0px while empty */
 /* 🌟 MASTER SECTION LOADING STATE */
-#homepage-skills-wrapper.is-loading {
-    min-height: 140px; /* Reserves uniform visual height so the section doesn't collapse */
+
+
+/* Hide every native child element while loading occurs */
+
+#homepage-tech-wrapper.is-loading {
+    min-height: 180px; /* Ensures the section framework doesn't flatten out */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
 }
 
-/* Hide every native child element while loading occurs */
-#homepage-skills-wrapper.is-loading > *:not(.dot-loader-grid) {
+/* 2. Automatically hides buttons, headers, and footer lines while loading */
+#homepage-tech-wrapper.is-loading > *:not(.loader) {
     display: none !important;
 }
 
-/* Position and scale your dot grid cleanly in the section window */
-#homepage-skills-wrapper.is-loading .dot-loader-grid {
-    display: grid !important;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 4px;
-    width: max-content;
+/* 3. Centers your new loader block perfectly inside the blank space */
+#homepage-tech-wrapper.is-loading .loader {
+    display: block !important;
     margin: 0 auto;
 }
 
-/* Standard configuration variables for the dots */
-.dot-loader-item {
-    width: 6px;
-    height: 6px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-}
+@media (max-width: 768px) {
 
-.dot-loader-item.active {
-    background-color: #ff3333 !important; /* Your branding primary tone */
-    box-shadow: 0 0 8px #ff3333;
+    #homepage-tech-wrapper.is-loading {
+        min-height: 0px;
+    }
 }
