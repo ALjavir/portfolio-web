@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
 
-    justify-content: center;
+
     align-items: center;
     background-color: #000000;
     overflow: hidden;
@@ -15,7 +15,7 @@
     z-index: 2;
     width: 100%;
     text-align: center;
-    padding: 100px 24px;
+    padding: 50px 24px;
 }
 
 .skills-heading {
@@ -31,6 +31,92 @@
     flex-direction: column;
     align-items: center;
 }
+
+
+
+
+
+/* --- Skill Card Styles --- */
+/* 1. The Main Wrapper (The Flutter "Stack" order fix) */
+#skills-detailed-grid {
+    display: flex; /* Makes the children sit in a row */
+    flex-direction: row;
+    width: max-content; /* Allows the track to be wider than the screen */
+    align-items: center;
+}
+
+#skills-slider-container {
+    overflow: hidden; /* Clips the overflow */
+    width: 100%;
+}
+.skill-skew-card {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    transform: skewX(-10deg); /* Match the Flutter skew */
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-skew-card:hover {
+    transform: skewX(-10deg) scale(1.02);
+}
+
+/* The Glowing Beam (Aura) */
+.skewed-beam {
+    position: absolute;
+    inset: 0;
+    opacity: 0.6;
+    filter: blur(20px);
+    z-index: 0;
+}
+
+/* Glass Blobs */
+.glass-blob {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    filter: blur(40px);
+    border-radius: 50%;
+}
+.blob-top-left { top: -20px; left: -20px; }
+.blob-bottom-right { bottom: -20px; right: -20px; }
+
+/* Content Panel (The "Un-Skewed" Layer) */
+.glass-content-panel {
+    position: relative;
+    z-index: 1;
+    transform: skewX(10deg); /* COUNTER-SKEW: Essential for readability */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    color: white;
+}
+
+.score-display { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+.card-title { font-size: 20px; margin-bottom: 15px; }
+
+.tech-badges-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.glass-tech-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+
 
 @media (max-width: 768px) {
 
