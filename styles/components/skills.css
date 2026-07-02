@@ -63,7 +63,7 @@
 /* 3. The Skewed Beams (Bottom Layer - z-index: 1) */
 .skewed-beam {
     position: absolute;
-    top: -15.5%;
+    top: -15%;
     left: 25%;
     width: 50%;
     height: 140%;
@@ -124,7 +124,7 @@
 /* 6. Active State (is-active applied via JS) */
 .skill-skew-card.is-active .glass-content-panel {
     height: 500px;
-    transform: translateY(-11%);
+    transform: translateY(-10.5%);
     background: rgba(255, 255, 255, 0.08);
 }
 
