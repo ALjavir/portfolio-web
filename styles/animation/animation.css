@@ -71,6 +71,15 @@
     margin: 0 auto;
 }
 
+
+
+
+.skills-grid-wrapper.is-loading-component {
+    padding: 200px 20px !important; 
+   
+}
+
+
 @media (max-width: 768px) {
 
     #homepage-tech-wrapper.is-loading {

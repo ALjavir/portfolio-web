@@ -4,6 +4,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    gap: 100px;
 
 
     align-items: center;
@@ -36,86 +37,160 @@
 
 
 
-/* --- Skill Card Styles --- */
-/* 1. The Main Wrapper (The Flutter "Stack" order fix) */
-#skills-detailed-grid {
-    display: flex; /* Makes the children sit in a row */
-    flex-direction: row;
-    width: max-content; /* Allows the track to be wider than the screen */
-    align-items: center;
+/* 1. Global Reset & Container */
+.skills-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 100px 40px 200px 40px;
+        width: 100%;
+    overflow: visible; /* CRITICAL: Allows blobs to float outside cards */
 }
 
-#skills-slider-container {
-    overflow: hidden; /* Clips the overflow */
-    width: 100%;
-}
+/* 2. Main Card Container */
 .skill-skew-card {
     position: relative;
-    width: 300px;
-    height: 400px;
-    transform: skewX(-10deg); /* Match the Flutter skew */
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    height: 350px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    margin: 20px auto;
+    overflow: visible;
 }
 
-.skill-skew-card:hover {
-    transform: skewX(-10deg) scale(1.02);
-}
-
-/* The Glowing Beam (Aura) */
+/* 3. The Skewed Beams (Bottom Layer - z-index: 1) */
 .skewed-beam {
     position: absolute;
-    inset: 0;
-    opacity: 0.6;
-    filter: blur(20px);
-    z-index: 0;
+    top: -19%;
+    left: 25%;
+    width: 50%;
+    height: 140%;
+    border-radius: 8px;
+    transform: skewX(18deg);
+    transform-origin: center;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
 }
 
-/* Glass Blobs */
+
+.aura-glow { filter: blur(25px); opacity: 0.7; }
+.crisp-core { opacity: 1; }
+
+/* 4. Floating Glass Blobs (z-index: 2) */
+@keyframes blobFloat {
+    0%, 100% { 
+        transform: translateY(10px); 
+    }
+    50% { 
+        transform: translate(-20px, -10px); 
+    }
+}
 .glass-blob {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.1);
-    filter: blur(40px);
-    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: all 0.6s ease;
+    z-index: 2;width: 100px; height: 80px; 
 }
-.blob-top-left { top: -20px; left: -20px; }
-.blob-bottom-right { bottom: -20px; right: -20px; }
 
-/* Content Panel (The "Un-Skewed" Layer) */
+.blob-top-left { top: -100px; left: 40px; }
+.blob-bottom-right { bottom: -120px; right: 40px; }
+
+/* 5. Glass Content Panel (Top Layer - z-index: 3) */
 .glass-content-panel {
-    position: relative;
-    z-index: 1;
-    transform: skewX(10deg); /* COUNTER-SKEW: Essential for readability */
-    height: 100%;
+    position: absolute;
+    top: 0;
+    /* transform: translateY(-50%); */
+    left: 0;
+    width: 100%;
+    height: 350px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05); /* Ensure semi-transparent BG */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
     display: flex;
     flex-direction: column;
-    padding: 24px;
-    color: white;
 }
 
-.score-display { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
-.card-title { font-size: 20px; margin-bottom: 15px; }
+/* 6. Active State (is-active applied via JS) */
+.skill-skew-card.is-active .glass-content-panel {
+    height: 500px;
+    transform: translateY(-13%);
+    background: rgba(255, 255, 255, 0.08);
+}
 
-.tech-badges-wrap {
+.skill-skew-card.is-active .skewed-beam {
+    transform: skewX(0deg);
+    left: 0;
+    width: 100%;
+   
+    height: 500px;
+}
+
+.skill-skew-card.is-active .glass-blob {
+    opacity: 1;
+    animation: blobFloat 2s ease-in-out infinite;
+}
+.skill-skew-card.is-active .blob-bottom-right {
+    animation-delay: -1s;
+}
+
+/* 7. Content Styles (Force White/Visible) */
+.score-display { position: absolute; top: 25px; right: 25px; font-size: 1rem; color: #fff; }
+.score-highlight { font-weight: 700; }
+.score-muted { color: rgba(255, 255, 255, 0.4); }
+
+.content-center-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    padding-top: 40px;
 }
 
-.glass-tech-badge {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
+.card-title { font-size: 1.6rem; font-weight: 600; color: #fff; margin: 0 0 15px 0; }
+.description-text { 
+    font-size: 0.95rem; 
+    color: #eee; 
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
+.skill-skew-card.is-active .description-text { -webkit-line-clamp: 100; }
+
+.tech-badges-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.glass-tech-badge { 
+    background: rgba(255, 255, 255, 0.15); 
+    color: #fff; 
+    padding: 5px 12px; 
+    border-radius: 6px; 
+    font-size: 0.8rem; 
+}
+
+.see-more-indicator {
+    position: absolute;
+    bottom: 25px;
+    left: 30px;
+    font-weight: 600;
+    color: #fff;
+    transition: opacity 0.3s ease;
+}
+
+.skill-skew-card.is-active .see-more-indicator { opacity: 0; }
 
 
 @media (max-width: 768px) {
@@ -125,9 +200,14 @@
         z-index: 2;
         width: 100%;
         text-align: center;
-        padding: 170px 24px;
+        padding: 50px 24px;
     }
       .skills-heading {
         font-size: 38px;}
+
+        .skills-grid-wrapper{
+         padding: 50px 30px 100px 30px;; 
+          gap: 12%;  
+        }
 
 }

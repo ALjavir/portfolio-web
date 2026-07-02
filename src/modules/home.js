@@ -65,7 +65,7 @@ export async function initHome() {
         loader.unmount()
     }
     catch (error) {
-       
+      
         console.error("❌ Slider compilation halted due to an engine exception:", error);
     }
 }
