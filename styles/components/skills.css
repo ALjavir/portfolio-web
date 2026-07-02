@@ -63,7 +63,7 @@
 /* 3. The Skewed Beams (Bottom Layer - z-index: 1) */
 .skewed-beam {
     position: absolute;
-    top: -19%;
+    top: -15.5%;
     left: 25%;
     width: 50%;
     height: 140%;
@@ -91,7 +91,7 @@
     position: absolute;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     opacity: 0;
     transition: all 0.6s ease;
@@ -99,21 +99,21 @@
 }
 
 .blob-top-left { top: -100px; left: 40px; }
-.blob-bottom-right { bottom: -120px; right: 40px; }
+.blob-bottom-right { bottom: -140px; right: 40px; }
 
 /* 5. Glass Content Panel (Top Layer - z-index: 3) */
 .glass-content-panel {
     position: absolute;
-    top: 0;
+    top: 0px;
     /* transform: translateY(-50%); */
     left: 0;
     width: 100%;
-    height: 350px;
+    height: 380px;
     padding: 30px;
     background: rgba(255, 255, 255, 0.05); /* Ensure semi-transparent BG */
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
+    border-radius: 6px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 3;
@@ -124,7 +124,7 @@
 /* 6. Active State (is-active applied via JS) */
 .skill-skew-card.is-active .glass-content-panel {
     height: 500px;
-    transform: translateY(-13%);
+    transform: translateY(-11%);
     background: rgba(255, 255, 255, 0.08);
 }
 
@@ -145,7 +145,7 @@
 }
 
 /* 7. Content Styles (Force White/Visible) */
-.score-display { position: absolute; top: 25px; right: 25px; font-size: 1rem; color: #fff; }
+.score-display { position: absolute; top: 25px; right: 25px; font-size: 1.4rem; color: #fff; }
 .score-highlight { font-weight: 700; }
 .score-muted { color: rgba(255, 255, 255, 0.4); }
 
@@ -156,15 +156,16 @@
     align-items: flex-start;
     height: 100%;
     width: 100%;
-    padding-top: 40px;
+   
 }
 
-.card-title { font-size: 1.6rem; font-weight: 600; color: #fff; margin: 0 0 15px 0; }
+.card-title { font-size: 1.6rem; font-weight: 600; color: #fff; margin: 0 0 15px 0;  font-family: var(--font-primary);font-variation-settings: 'opsz' 10; }
 .description-text { 
-    font-size: 0.95rem; 
+    font-size: 1rem; 
     color: #eee; 
     line-height: 1.6;
     display: -webkit-box;
+   
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -174,11 +175,11 @@
 
 .tech-badges-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .glass-tech-badge { 
-    background: rgba(255, 255, 255, 0.15); 
+    background: rgba(255, 255, 255, 0.30); 
     color: #fff; 
     padding: 5px 12px; 
     border-radius: 6px; 
-    font-size: 0.8rem; 
+    font-size: 0.85rem; 
 }
 
 .see-more-indicator {
@@ -216,6 +217,8 @@
         min-height: auto;
         padding-bottom: 100px; /* Gives nice breathing room at the very bottom of the page */
     }
+
+
 
     /* 2. Give the grid explicit rows so the absolute cards don't overlap */
     .skills-grid-wrapper {
