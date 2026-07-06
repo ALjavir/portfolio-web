@@ -46,38 +46,8 @@
 
 
 
-/* 1. Prevent the container from flattening to 0px while empty */
-/* 🌟 MASTER SECTION LOADING STATE */
 
 
-/* Hide every native child element while loading occurs */
-
-#homepage-tech-wrapper.is-loading {
-    min-height: 180px; /* Ensures the section framework doesn't flatten out */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* 2. Automatically hides buttons, headers, and footer lines while loading */
-#homepage-tech-wrapper.is-loading > *:not(.loader) {
-    display: none !important;
-}
-
-/* 3. Centers your new loader block perfectly inside the blank space */
-#homepage-tech-wrapper.is-loading .loader {
-    display: block !important;
-    margin: 0 auto;
-}
-
-
-
-
-.skills-grid-wrapper.is-loading-component {
-    padding: 200px 20px !important; 
-   
-}
 
 
 @media (max-width: 768px) {

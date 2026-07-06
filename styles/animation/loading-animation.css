@@ -9,16 +9,44 @@
     }
 }
 
-/* Layout container centering wrapper */
-.cube-loader-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* ==========================================================================
+   GLOBAL UNIVERSAL PLUG-AND-PLAY MOUNT FIXERS 
+   ========================================================================== */
+
+/* 1. Targets ANY element holding our loader. Ensures it behaves as a correct layout box */
+:has(> .cube-loader-container) {
+    position: relative !important;
+    min-height: 300px !important; /* Safety dynamic minimum height prevents 0px collapse */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 32px;
-    height: 220px;
     width: 100%;
 }
+
+/* 2. Style the inserted loader wrapper to stay perfectly centered on the parent axis */
+.cube-loader-container {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 99999 !important; /* Supercedes background graphics/marquee layers safely */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 32px;
+}
+
+/* 3. Automatically conceals ALL regular layout tags inside the mounting zone while loading */
+:has(> .cube-loader-container) > :not(.cube-loader-container) {
+    display: none !important;
+}
+
+/* ==========================================================================
+   3D CUBE ANIMATION SCHEMATICS 
+   ========================================================================== */
 
 /* 3D Box canvas alignment viewport */
 .cube {
@@ -55,22 +83,24 @@
 .cube-status {
     font-size: 16px;
     font-weight: 500;
-     font-family: var(--font-sub);
+    font-family: var(--font-sub);
     color: #ffffff;
     letter-spacing: 0.05em;
     text-transform: capitalize;
 }
 
-/* GLOBAL COMPONENT WRAPPER CONCEALMENT MASK */
+/* ==========================================================================
+   LEGACY MASKING STATES (Maintained for safety fallback)
+   ========================================================================== */
+
 .is-loading-component {
-    min-height: 220px !important;
+    min-height: 300px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     position: relative !important;
 }
 
-/* Automatically collapses native children context layers while mounted */
 .is-loading-component > *:not(.cube-loader-container) {
     display: none !important;
 }

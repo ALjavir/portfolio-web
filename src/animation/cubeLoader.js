@@ -1,34 +1,36 @@
-/**
- * Reusable 3D Isometric Cube Loader Component
- */
 export class CubeLoader {
-    /**
-     * @param {HTMLElement} parentElement - The wrapper DOM node that needs to show the loader
-     */
-    constructor(parentElement) {
-        this.parent = parentElement;
-        this.element = null;
-        this.statusInterval = null;
-        this.statuses = ["Please, wait", "Loading",];
-    }
+    static statusIntervals = new Map(); // Tracks intervals individually per parent element
+    static statuses = ["Please, wait", "Loading"];
 
     /**
-     * Mounts the HTML structural divs and activates the text tracking loop
+     * Mounts the loader inside the specified parent element
+     * @param {HTMLElement|string} parentElement - DOM element or CSS Selector string
      */
-    mount() {
-        if (!this.parent) return;
+    static mount(parentElement) {
+        // 1. Resolve parent wrapper
+        const parent = typeof parentElement === 'string' 
+            ? document.querySelector(parentElement) 
+            : parentElement;
 
-        // Apply masking helper classes to hide background content safely
-        this.parent.classList.add("is-loading-component");
-        this.parent.classList.remove("is-loaded");
+        if (!parent) {
+            console.error("❌ CubeLoader: Target parent element not found.");
+            return;
+        }
 
-        // Compile HTML template architecture
-        this.element = document.createElement('div');
-        this.element.className = 'cube-loader-container';
+        // 2. Prevent duplicate loaders inside the exact same parent
+        if (parent.querySelector('.cube-loader-container')) return;
+
+        // Apply masking css helper classes
+        parent.classList.add("is-loading-component");
+        parent.classList.remove("is-loaded");
+
+        // 3. Compile HTML structure locally
+        const loaderElement = document.createElement('div');
+        loaderElement.className = 'cube-loader-container';
         
         const plusIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>`;
 
-        this.element.innerHTML = `
+        loaderElement.innerHTML = `
             <div class="cube">
                 <div class="cube-face face-front">${plusIconSVG}</div>
                 <div class="cube-face face-back">${plusIconSVG}</div>
@@ -40,42 +42,53 @@ export class CubeLoader {
             <div class="cube-status">${this.statuses[0]}...</div>
         `;
 
-        this.parent.appendChild(this.element);
-        this._startTextTransitionLoop();
+        parent.appendChild(loaderElement);
+        this._startTextTransitionLoop(parent, loaderElement);
     }
 
     /**
-     * @private Low impact tracking helper for background labels
+     * @private Individualized tracker helper for background text updates
      */
-    _startTextTransitionLoop() {
+    static _startTextTransitionLoop(parent, loaderElement) {
         let index = 0;
-        const textNode = this.element.querySelector('.cube-status');
+        const textNode = loaderElement.querySelector('.cube-status');
 
-        this.statusInterval = setInterval(() => {
+        const intervalId = setInterval(() => {
             index = (index + 1) % this.statuses.length;
             if (textNode) {
                 textNode.textContent = `${this.statuses[index]}...`;
             }
         }, 600);
+
+        // Store this specific interval linked directly to this parent element
+        this.statusIntervals.set(parent, intervalId);
     }
 
     /**
-     * Clears tracking tasks and detaches all element nodes from DOM tree
+     * Clears tracking tasks and detaches the element from its parent
+     * @param {HTMLElement|string} parentElement - DOM element or CSS Selector string
      */
-    unmount() {
-        // Halt active asynchronous intervals to prevent memory leaks
-        if (this.statusInterval) {
-            clearInterval(this.statusInterval);
+    static unmount(parentElement) {
+        const parent = typeof parentElement === 'string' 
+            ? document.querySelector(parentElement) 
+            : parentElement;
+
+        if (!parent) return;
+
+        // 1. Clear the specific interval tracking this parent
+        if (this.statusIntervals.has(parent)) {
+            clearInterval(this.statusIntervals.get(parent));
+            this.statusIntervals.delete(parent);
         }
 
-        // Lift masking state limits from parent element
-        if (this.parent) {
-            this.parent.classList.remove("is-loading-component");
-        }
+        // 2. Lift structural CSS masking states
+        parent.classList.remove("is-loading-component");
+        parent.classList.add("is-loaded");
 
-        // Wipe layout markup cleanly out of document memory
-        if (this.element && this.element.parentNode) {
-            this.element.remove();
+        // 3. Find and cleanly rip out only this parent's specific loader element
+        const loaderElement = parent.querySelector('.cube-loader-container');
+        if (loaderElement) {
+            loaderElement.remove();
         }
     }
 }

@@ -25,11 +25,11 @@ export async function initHome() {
     const track = document.getElementById("tech-track");
 
     // 🛠️ Initialize and mount the decoupled component
-    const loader = new CubeLoader(masterWrapper);
-    loader.mount();
 
+
+    
     try {
-
+    CubeLoader.mount("#homepage-tech-wrapper");
         const docRef = doc(db, "skill", "main");
         const docSnap = await getDoc(docRef);
 
@@ -57,15 +57,19 @@ export async function initHome() {
 
             requestAnimationFrame(() => {
                 bindVelocityScrollEngine(masterWrapper, container, track);
-                if (masterWrapper) {
-                    masterWrapper.classList.add("is-loaded");
-                }
+             
+        
+            
             });
         }
-        loader.unmount()
+        
+        
+     console.log("from end of home---------------------------------------------------")
+        // CubeLoader.unmount();
+         CubeLoader.unmount("#homepage-tech-wrapper");
+        
     }
     catch (error) {
-      
         console.error("❌ Slider compilation halted due to an engine exception:", error);
     }
 }

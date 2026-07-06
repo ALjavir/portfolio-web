@@ -1,6 +1,7 @@
 
 import { getLoadedSkills } from "./home.js";
 import { CubeLoader } from "../animation/cubeLoader.js";
+import { GradientColor } from "../animation/gradientColor.js";
 
 export async function initSkills() {
     console.log("🔹 Skills fetch starting...");
@@ -10,7 +11,7 @@ export async function initSkills() {
     try {
 
 const masterWrapper = document.getElementById("skills-detailed-grid");
-    const loader = new CubeLoader(masterWrapper);
+    CubeLoader.mount(masterWrapper);
    
         if (data) {
             const entries = Object.entries(data);
@@ -18,13 +19,8 @@ const masterWrapper = document.getElementById("skills-detailed-grid");
             // Sort by index to keep your order intact
             entries.sort((a, b) => a[1].index - b[1].index);
 
-            // 🎨 Define the gradients mapped from your Flutter/Image design
-            const cardGradients = [
-                "linear-gradient(to bottom right, #f59e0b, #ef4444)", // Orange to Red
-                "linear-gradient(to bottom right, #3b82f6, #ec4899)", // Blue to Pink
-                "linear-gradient(to bottom right, #10b981, #06b6d4)", // Green to Cyan
-                "linear-gradient(to bottom right, #0ea5e9, #8b5cf6)"  // Cyan to Purple
-            ];
+           
+            const cardGradients = GradientColor().cardGradients;
 
             let groupHTML = "";
             // Inside your Firebase loop...
@@ -73,13 +69,13 @@ const masterWrapper = document.getElementById("skills-detailed-grid");
          //   const masterWrapper = document.getElementById("skills-detailed-grid");
             if (masterWrapper) {
                 masterWrapper.innerHTML = groupHTML;
-                 masterWrapper.classList.add("is-loaded");
+               
             }
        
         }
-        else {
-               loader.mount();
-        }
+   
+             CubeLoader.unmount(masterWrapper);
+        
     
     } catch (error) {
 
