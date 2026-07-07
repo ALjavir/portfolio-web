@@ -37,7 +37,7 @@
 @font-face {
     font-family: 'Orticalinear';
     src: url('../assets/fonts/Orticalinear-Light.otf') format('opentype');
-    font-weight: 300; /* Light variant matches a 300 font weight configuration */
+    font-weight: 200; /* Light variant matches a 300 font weight configuration */
     font-style: normal;
 }
 
