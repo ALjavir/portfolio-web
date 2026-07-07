@@ -34,6 +34,14 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Orticalinear';
+    src: url('../assets/fonts/Orticalinear-Light.otf') format('opentype');
+    font-weight: 300; /* Light variant matches a 300 font weight configuration */
+    font-style: normal;
+}
+
+
 /* ==========================================================================
    2. GLOBAL VARIABLES (Your Design Tokens)
    ========================================================================== */
@@ -43,6 +51,7 @@
   --font-navbar: 'Gangors', sans-serif;
   --font-primary: 'Bodoni Moda', serif;
   --font-sub: 'Lato', sans-serif;
+  --font-header: 'Orticalinear', sans-serif;  
 
   /* --- Icon Asset Paths Map (From icon_style.dart) --- */
   --icon-menu-open: url('/assets/icons/menu_open.svg');

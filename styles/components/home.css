@@ -253,8 +253,8 @@
 /* Monospace Footer Structure definition rules */
 .tech-powered-footer {
     margin-top: 30px;
-    font-size: 23px;
-    font-family: var(--font-navbar);
+    font-size: 22px;
+    font-family: var(--font-header);
     font-weight: 500;
     /* Emulates const SizedBox(height: 24) structural breaks */
     text-align: center;

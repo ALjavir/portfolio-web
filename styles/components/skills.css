@@ -159,7 +159,13 @@
    
 }
 
-.card-title { font-size: 1.6rem; font-weight: 600; color: #fff; margin: 0 0 15px 0;  font-family: var(--font-primary);font-variation-settings: 'opsz' 10; }
+.card-title { 
+    font-size: 1.6rem; 
+    font-weight: 400; 
+    color: #fff; margin: 0 0 15px 0;  
+    font-family: var(--font-header);
+
+}
 .description-text { 
     font-size: 1rem; 
     color: #eee; 

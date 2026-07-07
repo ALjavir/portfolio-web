@@ -15,7 +15,7 @@
 
 .navbar {
     width: 100%;             /* 💡 Forces the container to stretch fully edge-to-edge */
-    height: 70px;            /* Keeps your header height locked */
+    height: 75px;            /* Keeps your header height locked */
     display: flex;
     justify-content: space-between; /* Pushes first child to left, last child to right */
     align-items: center;
@@ -36,7 +36,7 @@
 /* --- Desktop Layout (forTopBar Column Structure) --- */
 .nav-desktop-menu {
     display: flex;
-    gap: 32px;                      /* Spaces your nav items out cleanly */
+    gap: 28px;                      /* Spaces your nav items out cleanly */
 }
 
 
@@ -47,7 +47,7 @@
     align-items: flex-end;
     /* Matches crossAxisAlignment: CrossAxisAlignment.end */
     text-decoration: none;
-    font-family: var(--font-navbar);
+    font-family: var(--font-header);
 }
 
 .nav-item-desktop .nav-num {
@@ -149,7 +149,7 @@
     gap: 10px;
     align-items: center;
     text-decoration: none;
-    font-family: var(--font-navbar);
+    font-family: var(--font-header);
 }
 
 .nav-item-mobile .nav-num,

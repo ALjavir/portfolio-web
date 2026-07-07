@@ -11,7 +11,7 @@ export async function initSkills() {
     try {
 
 const masterWrapper = document.getElementById("skills-detailed-grid");
-    CubeLoader.mount(masterWrapper);
+    CubeLoader.mount(".skills-grid-wrapper");
    
         if (data) {
             const entries = Object.entries(data);
@@ -71,10 +71,10 @@ const masterWrapper = document.getElementById("skills-detailed-grid");
                 masterWrapper.innerHTML = groupHTML;
                
             }
-       
+        CubeLoader.unmount(".skills-grid-wrapper");
         }
    
-             CubeLoader.unmount(masterWrapper);
+            
         
     
     } catch (error) {
