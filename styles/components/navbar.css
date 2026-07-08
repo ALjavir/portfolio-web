@@ -14,15 +14,18 @@
 }
 
 .navbar {
-    width: 100%;             /* 💡 Forces the container to stretch fully edge-to-edge */
-    height: 75px;            /* Keeps your header height locked */
+    width: 100%;
+    /* 💡 Forces the container to stretch fully edge-to-edge */
+    height: 85px;
+    /* Keeps your header height locked */
     display: flex;
-    justify-content: space-between; /* Pushes first child to left, last child to right */
+    justify-content: space-between;
+    /* Pushes first child to left, last child to right */
     align-items: center;
-    
+
     /* Use padding instead of margin to cleanly push content inward from edges */
-    padding: 0 24px;         
-    margin: 0;               
+    padding: 0 24px;
+    margin: 0;
 }
 
 /* Logo Alignment */
@@ -36,7 +39,8 @@
 /* --- Desktop Layout (forTopBar Column Structure) --- */
 .nav-desktop-menu {
     display: flex;
-    gap: 28px;                      /* Spaces your nav items out cleanly */
+    gap: 28px;
+    /* Spaces your nav items out cleanly */
 }
 
 
@@ -165,10 +169,157 @@
     color: #ff0000;
 }
 
+
+
+
+
+/* ==========================================================================
+   THE SEAMLESS GRADIENT CV BUTTON
+   ========================================================================== */
+.download-cv {
+    /* --- Structural Layout & Sizing --- */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 132px;
+    /* */
+    padding: 1rem 2.5rem;
+    /* Clean balanced padding */
+    cursor: pointer;
+    isolation: isolate;
+    position: relative;
+
+    /* --- Typography --- */
+    font-family: var(--font-sub), sans-serif;
+    font-size: 1rem;
+    /* */
+    font-weight: 500;
+    /* */
+    line-height: 19px;
+    /* */
+    color: #ffffff;
+    /* */
+    letter-spacing: 0.5px;
+
+    /* --- Borders & Radii --- */
+    border: none;
+    border-radius: 11px;
+    /* */
+
+    /* --- Stable Base Background Container --- */
+    background: #03001E;
+    /* Solid deep navy core matches your palette */
+    overflow: hidden;
+    /* Keeps background layers perfectly bounded */
+
+    /* --- Base Box Shadows --- */
+    box-shadow:
+        0 4px 12px rgba(3, 0, 30, 0.5),
+        0 2px 4px rgba(115, 3, 192, 0.15);
+
+    /* Smooth layout transitions */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+
+.nav-divider {
+  width: 2px;
+    height: 58px;
+    background: rgba(255, 255, 255, 0.4);
+    margin: 0 30px;
+    display: inline-block;
+    pointer-events: none;         /* Ensures it doesn't interrupt pointer logic */
+}
+
+/* ==========================================================================
+   DYNAMIC GRADIENT BORDER LAYERS (Pseudo Elements)
+   ========================================================================== */
+
+/* 1. IDLE STATE BORDER (To Bottom Right) */
+/* ==========================================================================
+   THE PERFECT CONTINUOUS GRADIENT CV BUTTON
+   ========================================================================== */
+.download-cv {
+    /* Layout & Sizing (Translated from inline-flex items-center min-w-[132px] px-9 py-4) */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 132px;
+    padding: 16px 35px;
+
+    /* Border & Reset (Translated from rounded-[11px] focus-visible:outline-none) */
+    border-radius: 11px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    /* Typography (Translated from text-base leading-[19px] text-white font-sans font-bold) */
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    color: #ffffff;
+
+    /* Visual Appearance: Recreating the dynamic gradient from the images */
+    /* The gradient spans from a deep navy to teal, ending in the bright yellow/green spot */
+  background: linear-gradient(
+    135deg,
+    #fdeff9 0%,
+    #ec38bc 14%,
+    #7303c0 28%,
+    #333399 42%,
+    #fdeff9 56%,
+    #ec38bc 70%,
+    #7303c0 84%,
+    #333399 98%
+);
+
+    /* Make the background larger than the button to allow for movement */
+    background-size: 250% 250%;
+
+    /* Starting position (matches the first image with the light spot slightly hidden/top right) */
+    background-position: 0% 10%;
+
+    /* Smooth transition for the hover state */
+    transition: background-position 0.6s ease-in-out, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+/* Hover State: Moves the background gradient to match the second image, 
+  bringing the bright yellow-green spot to the bottom left. 
+*/
+.download-cv:hover,
+.download-cv:focus-visible {
+    background-position: 100% 100%;
+}
+
+/* Focus Ring (Translated from focus-visible:ring-1) */
+.download-cv:focus-visible {
+    box-shadow:transparent;
+}
+
+/* Disabled State (Translated from disabled:pointer-events-none disabled:opacity-50) */
+.download-cv:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Ensure text stays sharply layered above the gradient */
+.download-cv span {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
 /* --- Responsiveness Media Rule Mapping --- */
 @media (max-width: 768px) {
+.navbar{
+    height: 65px;
+}
 
-  
     .nav-desktop-menu {
         display: none;
         /* Hide standard structural grid layout elements */
