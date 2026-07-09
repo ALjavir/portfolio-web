@@ -9,7 +9,7 @@
     width: 100%;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     /* Modern translucent background layer */
 }
 

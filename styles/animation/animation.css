@@ -24,7 +24,7 @@
 .shining-subtext {
     font-family: var(--font-sub, sans-serif);
     font-size: 21px;
-    margin: 10px auto 0px auto;
+    margin: 0px auto 0px auto;
     max-width: 650px;
     line-height: 1.6;
     text-align: center;
@@ -41,13 +41,6 @@
     -webkit-text-fill-color: transparent;
     animation: textShineEngine 4s linear infinite;
 }
-
-
-
-
-
-
-
 
 
 @media (max-width: 768px) {

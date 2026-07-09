@@ -1,0 +1,211 @@
+/* Main Section Layout */
+#contact {
+  position: relative;
+  width: 100%;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+
+  align-items: center;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+
+
+/* Content Container (Layered above grid and massive text) */
+.contact-container {
+  padding-top: 30px;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+
+}
+
+/* Typography */
+.contact-heading {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 58px;
+    font-variation-settings: 'opsz' 10;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.contact-body{
+  display: flex;
+  gap: 30%;
+    max-width: 85%
+}
+
+
+.get-in-tuch{
+  display: flex;
+      flex-direction: column;
+}
+
+
+
+/* --- Base Typography & Row Layout --- */
+.line-row-email, 
+.line-row-phone {
+  display: flex;
+  align-items: center;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5); /* Muted silver-white for labels */
+  margin-bottom: 0.75rem; /* Clean spacing between the rows */
+  letter-spacing: -0.01em;
+}
+
+/* --- Email Accent Text (Gmail Red Group) --- */
+.accent-text-email {
+  color: #f87171; /* Vibrant light brand red, perfect for black backgrounds */
+  font-weight: 600;
+  margin-left: 0.5rem;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+}
+
+/* Optional hover glow effect if it's acting as a link */
+.accent-text-email:hover {
+  color: #ef4444; 
+  text-shadow: 0 0 12px rgba(234, 67, 53, 0.3);
+}
+
+/* --- Phone Accent Text (WhatsApp Green Group) --- */
+.accent-text-phone {
+  color: #4ade80; /* Vibrant light brand green */
+  font-weight: 600;
+  margin-left: 0.5rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+/* Optional hover glow effect */
+.accent-text-phone:hover {
+  color: #22c55e;
+  text-shadow: 0 0 12px rgba(37, 211, 102, 0.3);
+}
+
+
+
+
+
+.phone-email{
+      display: flex;
+      flex-direction: column;
+    gap: 30px;
+}
+
+
+
+/* --- The Main Container --- */
+.dot-pattern-box {
+  position: relative;
+  width: 100%;
+  max-width: 850px; 
+  min-height: 420px;
+  background-color: #09090b; 
+  
+  /* 1. DENSE DOT PATTERN */
+  /* Using a brighter white/grey opacity and shrinking size from 24px to 12px makes it dense */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.2px, transparent 1.2px);
+  background-size: 12px 12px; 
+  background-position: center;
+  
+  /* Layout & Border */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px;
+  border: 1px solid #ef4444; /* Red frame line */
+  box-sizing: border-box;
+}
+
+/* --- 2. FOUR CORNER SQUARE HANDLES --- */
+.box-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ef4444; /* Matches the border color */
+}
+
+/* Offset by exactly half their size (-4px) to sit perfectly centered on the corners */
+.tl { top: -10px; left: -10px; }
+.tr { top: -10px; right: -10px; }
+.bl { bottom: -10px; left: -10px; }
+.br { bottom: -10px; right: -10px; }
+
+
+/* --- Typography to match Pic 2 --- */
+.quote-content {
+ 
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eyebrow {
+  color: #ef4444;
+  font-size: 20px;
+  font-family: var(--font-header);
+  
+  letter-spacing: 0.5px;
+}
+
+.quote {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 300; 
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.quote strong {
+  font-weight: 700; /* Pop out the important phrases */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 3rem;
+  }
+
+  .primary-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-primary {
+    width: 100%;
+    max-width: 250px;
+  }
+
+
+}

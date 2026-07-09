@@ -22,7 +22,7 @@
     font-family: var(--font-primary);
     font-weight: 500;
     color: #ffffff;
-    font-size: 48px;
+    font-size: 58px;
     font-variation-settings: 'opsz' 10;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -121,6 +121,11 @@
     flex-direction: column;
 }
 
+.glass-content-panel:hover{
+        background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+}
+
 /* 6. Active State (is-active applied via JS) */
 .skill-skew-card.is-active .glass-content-panel {
     height: 500px;
@@ -160,14 +165,14 @@
 }
 
 .card-title { 
-    font-size: 1.6rem; 
+    font-size: 26px; 
     font-weight: 400; 
     color: #fff; margin: 0 0 15px 0;  
     font-family: var(--font-header);
 
 }
 .description-text { 
-    font-size: 1rem; 
+    font-size: 17px; 
     color: #eee; 
     line-height: 1.6;
     display: -webkit-box;
@@ -192,7 +197,8 @@
     position: absolute;
     bottom: 25px;
     left: 30px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 500;
     color: #fff;
     transition: opacity 0.3s ease;
 }
@@ -217,8 +223,15 @@
           gap: 12%;  
         }
 
-
-
+        .card-title{
+            font-size: 24px;
+        }
+.description-text{
+    font-size: 16px;
+}
+.see-more-indicator{
+    font-size: 16px;
+}
         #skills {
         min-height: auto;
         gap: 100px;

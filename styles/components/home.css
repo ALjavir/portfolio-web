@@ -33,7 +33,7 @@
     font-family: var(--font-primary);
     font-weight: 500;
     color: #ffffff;
-    font-size: 48px;
+    font-size: 58px;
     font-variation-settings: 'opsz' 10;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -66,8 +66,8 @@
    ========================================================================== */
 .inline-icon-container {
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     vertical-align: middle;
 
 }
