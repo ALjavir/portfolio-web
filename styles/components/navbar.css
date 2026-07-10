@@ -247,7 +247,7 @@
     align-items: center;
     justify-content: center;
     min-width: 132px;
-    padding: 16px 35px;
+    padding: 20px 35px;
 
     /* Border & Reset (Translated from rounded-[11px] focus-visible:outline-none) */
     border-radius: 11px;

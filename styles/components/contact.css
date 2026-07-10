@@ -2,16 +2,15 @@
 #contact {
   position: relative;
   width: 100%;
-  min-height: 95vh;
+  min-height: 105vh;
   display: flex;
   flex-direction: column;
-  gap: 150px;
+  gap: 130px;
 
   align-items: center;
   background-color: #000000;
   overflow: hidden;
 }
-
 
 
 /* Content Container (Layered above grid and massive text) */
@@ -25,165 +24,163 @@
 
 /* Typography */
 .contact-heading {
-    font-family: var(--font-primary);
-    font-weight: 500;
-    color: #ffffff;
-    font-size: 58px;
-    font-variation-settings: 'opsz' 10;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.contact-body{
-  display: flex;
-  gap: 30%;
-    max-width: 85%
-}
-
-
-.get-in-tuch{
-  display: flex;
-      flex-direction: column;
-}
-
-
-
-/* --- Base Typography & Row Layout --- */
-.line-row-email, 
-.line-row-phone {
-  display: flex;
-  align-items: center;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 1rem;
+  font-family: var(--font-primary);
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.5); /* Muted silver-white for labels */
-  margin-bottom: 0.75rem; /* Clean spacing between the rows */
-  letter-spacing: -0.01em;
-}
-
-/* --- Email Accent Text (Gmail Red Group) --- */
-.accent-text-email {
-  color: #f87171; /* Vibrant light brand red, perfect for black backgrounds */
-  font-weight: 600;
-  margin-left: 0.5rem;
-  letter-spacing: 0.02em;
-  transition: color 0.3s ease;
-}
-
-/* Optional hover glow effect if it's acting as a link */
-.accent-text-email:hover {
-  color: #ef4444; 
-  text-shadow: 0 0 12px rgba(234, 67, 53, 0.3);
-}
-
-/* --- Phone Accent Text (WhatsApp Green Group) --- */
-.accent-text-phone {
-  color: #4ade80; /* Vibrant light brand green */
-  font-weight: 600;
-  margin-left: 0.5rem;
-  letter-spacing: 0.05em;
-  transition: color 0.3s ease;
-}
-
-/* Optional hover glow effect */
-.accent-text-phone:hover {
-  color: #22c55e;
-  text-shadow: 0 0 12px rgba(37, 211, 102, 0.3);
+  color: #ffffff;
+  font-size: 58px;
+  font-variation-settings: 'opsz' 10;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
-
-
-
-.phone-email{
-      display: flex;
-      flex-direction: column;
-    gap: 30px;
+.contact-body {
+  display: flex;
+  gap: 8%;
+  max-width: 85%
 }
 
 
-
-/* --- The Main Container --- */
-.dot-pattern-box {
+.premium-card-container {
   position: relative;
   width: 100%;
-  max-width: 850px; 
-  min-height: 420px;
-  background-color: #09090b; 
-  
-  /* 1. DENSE DOT PATTERN */
-  /* Using a brighter white/grey opacity and shrinking size from 24px to 12px makes it dense */
-  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.2px, transparent 1.2px);
-  background-size: 12px 12px; 
-  background-position: center;
-  
-  /* Layout & Border */
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 60px;
-  border: 1px solid #ef4444; /* Red frame line */
   box-sizing: border-box;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  padding: 2rem 11rem 3.5rem 5rem;
+  margin: 0;
+  overflow: hidden;
 }
 
-/* --- 2. FOUR CORNER SQUARE HANDLES --- */
-.box-handle {
+.container-left-line {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #ef4444; /* Matches the border color */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+
+
+
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
 }
 
-/* Offset by exactly half their size (-4px) to sit perfectly centered on the corners */
-.tl { top: -10px; left: -10px; }
-.tr { top: -10px; right: -10px; }
-.bl { bottom: -10px; left: -10px; }
-.br { bottom: -10px; right: -10px; }
+
+.container-bg-number {
+  position: absolute;
+  right: 0.5rem;
+  bottom: -1.5rem;
+  font-size: 9.5rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.050);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
 
 
-/* --- Typography to match Pic 2 --- */
+.container-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+
 .quote-content {
- 
+
   font-family: system-ui, -apple-system, sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 }
 
 .eyebrow {
-  color: #ef4444;
-  font-size: 20px;
+  color: #ff0000;
+  font-size: 24px;
   font-family: var(--font-header);
-  
+  font-weight: bold;
   letter-spacing: 0.5px;
 }
 
 .quote {
   color: #ffffff;
   font-size: 36px;
-  font-weight: 300; 
+  font-weight: 300;
   letter-spacing: -1px;
   margin: 0;
 }
 
 .quote strong {
-  font-weight: 700; /* Pop out the important phrases */
+  background-color: #ffffff;
+  padding: 0px 10px;
+  color: #000000;
+  font-weight: 700;
+ 
+
+}
+
+.email-phone-info {
+  display: flex;
+  align-items: center;
+
+  font-size: 36px;
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+
+  gap: 10px;
+  letter-spacing: -0.01em;
+  flex-direction: row;
+}
+
+.phone-email {
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  font-family: 'Orticalinear';
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+
+
+.contact-divider-horizental {
+  width: 50px;
+  height: 5px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  margin: 80px 15px;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.contact-divider-vartical {
+  width: 5px;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  margin: 0 30px;
+  display: inline-block;
+  pointer-events: none;
 }
 
 
 
 
+.premium-card-container:hover .contact-divider-horizental, 
 
+.premium-card-container:hover .container-left-line,
+.premium-card-container:hover .contact-divider-vartical {
+  background: rgb(255, 255, 255);
+}
 
-
-
-
-
+.premium-card-container:hover .container-bg-number, .premium-card-container:hover .phone-email{
+  color: rgb(255, 255, 255);
+}
 
 
 
@@ -193,6 +190,20 @@
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+
+  #contact{
+    position: relative;
+        z-index: 2;
+        width: 100%;
+        text-align: center;
+        padding: 50px 24px;
+  }
+  .contact-body {
+    max-width: 95%;
+  }
+  .premium-card-container{
+    padding: 1rem 1rem 1rem 1rem;
+  }
   .main-title {
     font-size: 3rem;
   }

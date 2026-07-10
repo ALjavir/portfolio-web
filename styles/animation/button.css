@@ -5,6 +5,7 @@
 .FancyButtonProps{
   gap: 20px;
   display: flex;
+  align-items: center;
 }
 
 .fancy-button {
