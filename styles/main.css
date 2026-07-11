@@ -94,7 +94,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: var(--font-sub);
+  font-family: var(--font-sub, sans-serif);
 
 }
 
