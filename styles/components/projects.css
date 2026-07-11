@@ -276,7 +276,7 @@
     .project-card {
         flex-shrink: 0 !important;
         width: 320px !important;
-        min-height: 490px !important;
+        min-height: 500px !important;
     }
 
 
@@ -284,6 +284,14 @@
         display: none;
         width: 0 !important;
         height: 0 !important;
+    }
+
+    .project-subtext {
+        font-size: 14px;
+        
+    }
+    .project-name{
+        font-size: 22;
     }
 
     #global-mobile-counter {
