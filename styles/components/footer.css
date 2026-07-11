@@ -2,118 +2,158 @@
 
 /* 1. The Parent Container turns into a single-cell Grid Stack */
 .site-footer {
-    
-    display: grid;
-    grid-template-areas: "footer-stack";
-    width: 100%;
-    position: relative;
-    background-color: #000000;
-    overflow: hidden;
-    align-items: end;
-    justify-items: center;
+
+  display: grid;
+  grid-template-areas: "footer-stack";
+  width: 100%;
+  position: relative;
+  background-color: #000000;
+  overflow: hidden;
+  align-items: end;
+  justify-items: center;
 }
 
 /* 2. The Giant Background Text */
 .site-footer .massive-text {
-    grid-area: footer-stack;
-    /* Put into the stack */
-    font-size: 20vw;
-    line-height: 0.75;
-    /* Keep the tight bounding box from earlier */
-    font-weight:600;
-    white-space: nowrap;
-    user-select: none;
-    font-family: var(--font-primary);
-   color: #ffffff0f;
-    font-variation-settings: 'opsz' 10;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+  grid-area: footer-stack;
+  /* Put into the stack */
+  font-size: 20vw;
+  line-height: 0.75;
+  /* Keep the tight bounding box from earlier */
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  font-family: var(--font-primary);
+  color: #ffffff0f;
+  font-variation-settings: 'opsz' 10;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 
-    z-index: 1;
+  z-index: 1;
 }
 
 
 .site-footer .copyright-info {
-    grid-area: footer-stack;
-    font-family: var(--font-header);
-    width: 100%;
-    box-sizing: border-box;
-    padding: 50px 50px 25px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-    color: #ffffff;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    background: linear-gradient(to top, #000000 0%, #1c1c1f00 100%);
+  grid-area: footer-stack;
+  font-family: var(--font-header);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px 50px 25px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: linear-gradient(to top, #000000 0%, #1c1c1f00 100%);
 }
 
 .btn-carfted-by {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: #ffffff;
-    border-radius: 9999px; /* Pill shape */
-    transition: all 0.2s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-        padding: 20px;
-        font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 9999px;
+  /* Pill shape */
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  font-size: 18px;
 }
 
 .btn-carfted-by:hover {
-    background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 
 .logo-footer {
   font-size: 12px;
-    font-family: var(--font-logo);
-    font-weight: bold;
+  font-family: var(--font-logo);
+  font-weight: bold;
 }
 
 
 
-.copyright{
-        text-shadow: 0 0 50px rgb(255 255 255 / 50%);
-   font-size: 22px;
-    color: white;
+.copyright {
+  text-shadow: 0 0 50px rgb(255 255 255 / 50%);
+  font-size: 22px;
+  color: white;
 }
 
 .crafted-by strong {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 /* 1. Define the blinking keyframe behavior */
 @keyframes heartBlink {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
-    opacity: 0.3;         /* Fades down to 30% visibility */
-    transform: scale(1.1); /* Optional: Adds a tiny heartbeat pulse effect! */
+    opacity: 0.3;
+    /* Fades down to 30% visibility */
+    transform: scale(1.1);
+    /* Optional: Adds a tiny heartbeat pulse effect! */
   }
 }
 
 /* 2. Apply it to your new heart class */
 .btn-carfted-by .heart-blink {
-    text-shadow: 0px 0px 20px red;
-  display: inline-block;  /* REQUIRED: animations/transforms don't work on default inline spans */
+  text-shadow: 0px 0px 20px red;
+  display: inline-block;
+  /* REQUIRED: animations/transforms don't work on default inline spans */
   animation: heartBlink 1.5s infinite ease-in-out;
-  margin: 0 4px;          /* Adds a clean safety space around the heart */
+  margin: 0 4px;
+  /* Adds a clean safety space around the heart */
 }
 
 @media (max-width: 768px) {
-    .site-footer {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
+  .site-footer {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+
+
+  }
+
+  .copyright {
+    font-size: 12px;
+    order: 3;
+  }
+
+  .site-footer .copyright-info {
+    flex-direction: column;
+    gap: 18px;
+    padding: 50px 20px 0px 20px;
+  }
+
+  .btn-carfted-by {
+    font-size: 12px;
+  }
+
+  .logo-footer {
+    font-size: 10px;
+  }
+
+  .btn-carfted-by {
+    padding: 14px 18px 14px 18px;
+  }
+
+  .site-footer .massive-text{
+    font-size: 18vw;
+    color: rgb(255 255 255 / 70%);
+    line-height: 0.8;
+    font-weight: 800;
+  }
 }
