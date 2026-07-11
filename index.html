@@ -7,6 +7,7 @@
     <title>Al Javir | Portfolio</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/animation/animation.css">
+    <link rel="stylesheet" href="styles/animation/initaddanimationtoitem.css">
     <link rel="stylesheet" href="styles/animation/button.css">
     <link rel="stylesheet" href="styles/animation/loading-animation.css">
     <link rel="stylesheet" href="styles/components/navbar.css">
@@ -71,24 +72,31 @@
     </header>
 
     <main class="page-scroller">
+        <canvas id="homeAnimation-canvas"></canvas>
         <!-- HOME PAGE------------------------------------------------------------ -->
         <section id="home" class="section-block">
-            <canvas id="homeAnimation-canvas"></canvas>
+
             <div id="home-content">
-                <h1 class="hero-heading">
-                    <span class="line-row">
-                        HI!<span id="lottie-smile" class="inline-icon-container"></span> I AM <span
-                            class="accent-text">AL JAVIR, </span>
-                    </span>
-                    <span class="line-row">
-                        A<span class="inline-svg-container flutter-icon"></span> <span class="accent-text"> FLUTTER
-                        </span> DEVELOPER_.
-                    </span>
-                </h1>
+
+
+                <div class="scroll-reveal fade-up" style="transition-delay: 0.2s;">
+                    <h1 class="hero-heading">
+                        <span class="line-row">
+                            HI!<span id="lottie-smile" class="inline-icon-container"></span> I AM <span
+                                class="accent-text">AL JAVIR, </span>
+                        </span>
+                        <span class="line-row">
+                            A<span class="inline-svg-container flutter-icon"></span> <span class="accent-text"> FLUTTER
+                            </span> DEVELOPER_.
+                        </span>
+                    </h1>
+                </div>
+
+
                 <p class="shining-subtext">Crafting sleek, scalable, and meaningful digital experiences.</p>
             </div>
 
-         
+
             <div id="homepage-tech-wrapper">
                 <div class="tech-slider-row">
 
@@ -181,7 +189,7 @@
                                 example of that mindset: turning complex engineering into something <strong>stunningly
                                     creative,
                                     yet beautifully simple.</strong>"
-                                </p>
+                            </p>
                             <div class="email-phone-info">
                                 <span class="contact-divider-horizental"></span>
                                 <div class="phone-email">

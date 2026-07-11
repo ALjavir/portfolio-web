@@ -4,6 +4,7 @@
 
 // 1. Import initialization functions from your feature modules
 import { initNavbar } from './modules/navbar.js';
+import { initaddanimationtoitem } from './animation/addAnimationToItem.js';
 import { initHome } from './modules/home.js';
 import { initSkills } from './modules/skills.js';
 import { initProjects } from './modules/projects.js';
@@ -20,10 +21,11 @@ import { SparkEffect } from "./animation/sparksAnimation-canvas.js";
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("🚀 Portfolio system initializing...");
 
-
+    
 
     // 2. Initialize the UI layouts sequentially
     initNavbar();
+    initaddanimationtoitem();
     try {
         await initHome();
     } catch (error) {
@@ -60,6 +62,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         amount: 3000,           
         direction: { x: -0.5, y: 1 } 
     });
+
+
     function toggleSparksVisibility() {
         const homeHeight = window.innerHeight;
         if (window.scrollY < homeHeight - 100) {

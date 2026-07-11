@@ -1,0 +1,32 @@
+/* Base setup for anything you want to animate */
+.scroll-reveal {
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+/* ─── VARIATIONS ─── */
+
+/* 1. Fade Up (Best for sections or text blocks) */
+.fade-up {
+  transform: translateY(40px);
+}
+
+/* 2. Fade Left (Great for side-by-side elements) */
+.fade-left {
+  transform: translateX(-40px);
+}
+
+/* 3. Scale Up (Great for cards or project items) */
+.scale-up {
+  transform: scale(0.92);
+}
+
+/* ─── THE TRIGGER CLASS ─── */
+/* When JS detects the element is visible, it applies this */
+.scroll-reveal.active {
+  opacity: 1;
+  transform: translate(0) scale(1);
+  filter: blur(0);
+}
