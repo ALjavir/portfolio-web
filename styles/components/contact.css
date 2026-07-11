@@ -122,8 +122,6 @@
   padding: 0px 10px;
   color: #000000;
   font-weight: 700;
- 
-
 }
 
 .email-phone-info {
@@ -171,19 +169,22 @@
 
 
 
-.premium-card-container:hover .contact-divider-horizental, 
+.premium-card-container:hover .contact-divider-horizental,
 
 .premium-card-container:hover .container-left-line,
 .premium-card-container:hover .contact-divider-vartical {
   background: rgb(255, 255, 255);
 }
 
-.premium-card-container:hover .container-bg-number, .premium-card-container:hover .phone-email{
+.premium-card-container:hover .container-bg-number,
+.premium-card-container:hover .phone-email {
   color: rgb(255, 255, 255);
 }
 
 
-
+.fancy-button-cv {
+  display: none;
+}
 
 
 
@@ -191,19 +192,22 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
 
-  #contact{
+  #contact {
     position: relative;
-        z-index: 2;
-        width: 100%;
-        text-align: center;
-        padding: 50px 24px;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    padding: 50px 24px;
   }
+
   .contact-body {
-    max-width: 95%;
+    max-width: 100%;
   }
-  .premium-card-container{
-    padding: 1rem 1rem 1rem 1rem;
+
+  .premium-card-container {
+    padding: 1rem 0rem 6rem 1rem;
   }
+
   .main-title {
     font-size: 3rem;
   }
@@ -216,6 +220,43 @@
   .btn-primary {
     width: 100%;
     max-width: 250px;
+  }
+
+  .container-left-line {
+    width: 2.5px;
+  }
+
+  .email-phone-info {
+    justify-content: flex-end;
+  }
+
+  .quote {
+    font-size: 22px;
+    text-align: justify;
+  }
+
+  .quote strong {
+    line-height: 1.6;
+  }
+
+  .contact-divider-horizental {
+    width: 20px;
+    height: 3px;
+    margin: 30px 0px;
+  }
+
+  .phone-email {
+    font-size: 16px;
+    align-items: flex-start;
+  }
+
+  .FancyButtonProps-desktop {
+    display: none;
+   
+  }
+
+  .fancy-button-cv {
+    display: flex; margin: 60px 0px -60px;
   }
 
 

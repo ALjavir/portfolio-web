@@ -106,7 +106,7 @@ export function initHomeShader() {
         uniforms.angle.value = 0; 
         uniforms.pathFrequency.value = 0; 
         uniforms.pathAmplitude.value = 0; 
-        uniforms.yScale.value = 1.5;
+        uniforms.yScale.value = 1;
     } else {
         // Desktop layout parameters
         uniforms.angle.value = 0.0;
