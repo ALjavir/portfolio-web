@@ -13,9 +13,9 @@ export async function initProjects() {
     console.log("🔹 Projects fetch starting...");
     const scrollView = document.getElementById("projects-View");
 
-
+   
     try {
-        CubeLoader.mount(scrollView);
+ CubeLoader.mount(scrollView);
         const projectsCollectionRef = collection(db, "project");
         const querySnapshot = await getDocs(projectsCollectionRef);
         const projectList = [];
@@ -28,6 +28,7 @@ export async function initProjects() {
         });
 
         if (!scrollView)
+           
             return projectList;
 
         const cardGradientsBorder = GradientColor().borderGradients;
@@ -98,11 +99,11 @@ export async function initProjects() {
             }
         });
 
-        CubeLoader.unmount(scrollView);
+         CubeLoader.unmount(scrollView);
         return projectList;
 
     } catch (error) {
-
+         CubeLoader.mount(scrollView);
         console.error("❌ Error loading projects:", error);
         return [];
     }

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details</title>
-    <link rel="stylesheet" href="style.css"> </head>
-<body>
+    <title>Project</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animation/animation.css">
+   
+ 
 
+    <!-- <link rel="stylesheet" href="style.css">  -->
+</head>
+<body>
     <main class="project-detail-container">
+        <canvas id="sparksAnimation-canvas"></canvas>
         <a href="index.html" class="back-btn">← Back to Portfolio</a>
 
         <section class="project-header">
@@ -16,22 +23,23 @@
         </section>
 
         <section class="project-media">
-            <img id="detail-image" src="" alt="Project Preview" />
+            <!-- <img id="detail-image" src="" alt="Project Preview" /> -->
         </section>
 
         <section class="project-body">
             <h3>About the Project</h3>
             <p id="detail-description"></p>
-            
+
             <h3>Tech Stack</h3>
             <div id="detail-tags" class="tags-container"></div>
-            
+
             <div class="project-actions">
                 <a id="detail-github" href="#" target="_blank" class="btn">View Source Code</a>
             </div>
         </section>
     </main>
 
-    <script type="modules" src="project-info.js"></script>
+    <script type="module" src="src/modules/project-info.js"></script>
+    <script type="module" src="src/main.js"></script>
 </body>
 </html>

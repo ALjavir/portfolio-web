@@ -1,6 +1,6 @@
 export class CubeLoader {
     static statusIntervals = new Map(); // Tracks intervals individually per parent element
-    static statuses = ["Please, wait", "Loading"];
+    static statuses = ["Please, wait", "Loading", "Check your internet connection"];
 
     /**
      * Mounts the loader inside the specified parent element

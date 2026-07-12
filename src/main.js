@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initlottie("scroll-next-lottie", "assets/icons/scroll_down.json");
 
 
-    const sparksCanvas = document.querySelector('#sparksAnimation-canvas');
+   // const sparksCanvas = document.querySelector('#sparksAnimation-canvas');
     new SparkEffect({
         selector: '#sparksAnimation-canvas',
         amount: 3000,           
@@ -64,16 +64,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 
-    function toggleSparksVisibility() {
-        const homeHeight = window.innerHeight;
-        if (window.scrollY < homeHeight - 100) {
-            sparksCanvas.style.display = 'none';
-        } else {
-            sparksCanvas.style.display = 'block';
-        }
-    }
-    toggleSparksVisibility();
-    window.addEventListener('scroll', toggleSparksVisibility);
+    // function toggleSparksVisibility() {
+    //     const homeHeight = window.innerHeight;
+    //     if (window.scrollY < homeHeight - 100) {
+    //         sparksCanvas.style.display = 'none';
+    //     } else {
+    //         sparksCanvas.style.display = 'block';
+    //     }
+    // }
+    // toggleSparksVisibility();
+    // window.addEventListener('scroll', toggleSparksVisibility);
 
     //------------------------------------------------------------------
 
