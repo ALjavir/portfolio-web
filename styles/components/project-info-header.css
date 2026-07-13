@@ -2,13 +2,12 @@
     position: relative;
     padding: 30px;
     width: 100%;
-    min-height: 100vh;
+
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
     background-color: #000000;
     overflow: hidden;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 
@@ -59,13 +58,12 @@
 }
 
 #detail-subtext {
-    font-family: var(--font-sub, sans-serif);
-    font-size: 21px;
-
+   font-family: var(--font-sub, sans-serif);
+    font-size: 22px;
     max-width: 650px;
-    line-height: 1.6;
-
     font-weight: 500;
+    color: rgb(255 255 255 / 50%);
+    padding-bottom: 30px;
 }
 
 #detail-description {
@@ -75,5 +73,152 @@
     max-width: 650px;
     line-height: 1.6;
     text-align: justify;
-    font-weight: 500;
+    font-weight: 300;
+}
+
+
+/* Container Box Layout */
+.video-player {
+    margin-top: 14px;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+
+}
+
+/* 📸 Thumbnail Trigger Box Container Styles */
+.video-thumb-container {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease-out;
+}
+
+/* Hover Zoom Effect */
+.video-thumb-container:hover .video-preview-img {
+    transform: scale(1.02);
+    filter: brightness(0.85);
+}
+
+/* 🎯 MagicUI Play Button Replication */
+.play-btn-blur-ring {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-out;
+    transform: scale(0.95);
+}
+
+.play-btn-inner-gradient {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2), #ffffff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease-out;
+}
+
+.play-icon-svg {
+    width: 24px;
+    height: 24px;
+    color: #0c0c0e; /* Dark theme contrast color matching your site background */
+    margin-left: 4px; /* Perfectly centers the visual weight of the triangle */
+}
+
+.video-thumb-container:hover .play-btn-blur-ring {
+    transform: scale(1.1);
+}
+
+/* 🎬 Full-Screen Dark Modal Overlay Screen */
+.video-screen-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Activated State via JS Class Injection */
+.video-screen-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Centered Interactive Player Modal Box Frame */
+.video-modal-box {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    aspect-ratio: 16 / 9;
+}
+
+.video-player-frame {
+    width: 100%;
+    height: 100%;
+    border-2: 2px solid #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: #000;
+}
+
+.video-player-frame iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Clean Cancel Close Trigger Button Element */
+.video-cancel-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: rgba(23, 23, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.video-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }

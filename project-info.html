@@ -11,39 +11,53 @@
     <link rel="stylesheet" href="styles/animation/button.css">
     <link rel="stylesheet" href="styles/animation/loading-animation.css">
     <link rel="stylesheet" href="styles/components/project-info-header.css">
+    <link rel="stylesheet" href="styles/components/project-info-tech.css">
     <link rel="stylesheet" href="styles/components/footer.css">
 </head>
 
 <body>
     <main class="project-detail-container">
+       
         <canvas id="sparksAnimation-canvas"></canvas>
-
-
+        <a href="index.html" class="back-btn">
+            <img src="/assets/icons/back.svg" alt="back" class="icon" />
+        </a>
+       
         <section class="project-header">
-
-            <a href="index.html" class="back-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="back-icon">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-               
-            </a>
             <div class="project-header-txt">
                 <h1 id="detail-title"></h1>
                 <p id="detail-subtext"></p>
                 <p id="detail-description"></p>
             </div>
-            <div class="project-header-video">
+            <div class="video-player">
+                <div class="video-thumb-container" id="video-trigger">
+                    <img id="thumbImage-image" src="" alt="Project Thumbnail" class="video-preview-img">
 
+                    <div class="play-btn-blur-ring">
+                        <div class="play-btn-inner-gradient">
+                            <img src="/assets/icons/play.svg" alt="back" height="25px" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-screen-overlay" id="video-overlay">
+                    <div class="video-modal-box">
+                        <button class="video-cancel-btn" id="video-cancel" aria-label="Close Video">✕</button>
+
+                        <div class="video-player-frame">
+                            <iframe id="modal-youtube-player" src="" frameborder="0" allow="autoplay; encrypted-media"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </section>
 
-        <section class="project-media">
-        </section>
+        <div class="tech-section-container">
 
+            <div id="project-tech-grid" class="features-grid"></div>
+            <h3 class="tech-section-heading">Technologies Used</h3>
+        </div>
         <section class="project-body">
             <h3>About the Project</h3>
 
@@ -55,10 +69,11 @@
                 <a id="detail-github" href="#" target="_blank" class="btn">View Source Code</a>
             </div>
         </section>
+    
     </main>
     <div id='footer-View'></div>
-    <script type="module" src="src/modules/project-info.js"></script>
-    <script type="module" src="src/main.js"></script>
+
+    <script type="module" src="src/product-info-main.js"></script>
 </body>
 
 </html>

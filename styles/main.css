@@ -21,6 +21,14 @@
 /* 2. Register Lato Regular */
 @font-face {
     font-family: 'Lato';
+    src: url('../assets/fonts/Lato-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Lato';
     src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
@@ -111,11 +119,14 @@ body {
     flex: 1;
   width: 100%;
   color: white;
+  padding: 30px;
 }
 
 .site-footer {
   width: 100%;
 }
+
+
 
 
 

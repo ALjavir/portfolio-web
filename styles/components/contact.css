@@ -95,7 +95,6 @@
 
 .quote-content {
 
-  font-family: system-ui, -apple-system, sans-serif;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -113,7 +112,7 @@
   color: #ffffff;
   font-size: 36px;
   font-weight: 300;
-  letter-spacing: -1px;
+
   margin: 0;
 }
 
