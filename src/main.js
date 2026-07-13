@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initFooter()
 
     // cssJavaScript-----------------------------------------------------
-    
+    initHomeShader();
     initlottie("lottie-smile", "assets/icons/smile.json");
     initlottie("scroll-next-lottie", "assets/icons/scroll_down.json");
 
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // window.addEventListener('scroll', toggleSparksVisibility);
 
     //------------------------------------------------------------------
-initHomeShader();
+
 
     initaddanimationtoitem();
 });
