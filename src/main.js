@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // const sparksCanvas = document.querySelector('#sparksAnimation-canvas');
     new SparkEffect({
-        selector: '#sparksAnimation-canvas',
-        amount: 3000,
-        direction: { x: -0.5, y: 1 }
+       
+
+        
     });
 
 

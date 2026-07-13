@@ -1,17 +1,17 @@
 export class SparkEffect {
-    constructor(options = {}) {
+    constructor() {
         // Map all your original properties with their defaults
         this.OPT = {
-            selector: options.selector || '#sparks',
-            amount: options.amount || 5000,
-            speed: options.speed || 0.05,
-            lifetime: options.lifetime || 200,
-            direction: options.direction || { x: -0.5, y: 1 },
-            size: options.size || [2, 2],
-            maxopacity: options.maxopacity || 1,
-            color: options.color || '150, 150, 150',
-            randColor: options.randColor !== undefined ? options.randColor : true,
-            acceleration: options.acceleration || [5, 40]
+            selector: '#sparksAnimation-canvas',
+            amount: 5000,
+            speed: 0.05,
+            lifetime:  200,
+            direction:  { x: -0.5, y: 1 },
+            size:  [2, 2],
+            maxopacity:  1,
+            color:  '150, 150, 150',
+            randColor:  true,
+            acceleration: [5, 40]
         };
 
         // Mobile responsiveness override from your original code
