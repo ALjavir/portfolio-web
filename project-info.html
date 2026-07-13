@@ -7,28 +7,46 @@
     <title>Project</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/animation/animation.css">
-   
- 
-
-    <!-- <link rel="stylesheet" href="style.css">  -->
+    <link rel="stylesheet" href="styles/animation/initaddanimationtoitem.css">
+    <link rel="stylesheet" href="styles/animation/button.css">
+    <link rel="stylesheet" href="styles/animation/loading-animation.css">
+    <link rel="stylesheet" href="styles/components/project-info-header.css">
+    <link rel="stylesheet" href="styles/components/footer.css">
 </head>
+
 <body>
     <main class="project-detail-container">
         <canvas id="sparksAnimation-canvas"></canvas>
-        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+
 
         <section class="project-header">
-            <h1 id="detail-title">Loading Project...</h1>
-            <p id="detail-subtext"></p>
+
+            <a href="index.html" class="back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="back-icon">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+               
+            </a>
+            <div class="project-header-txt">
+                <h1 id="detail-title"></h1>
+                <p id="detail-subtext"></p>
+                <p id="detail-description"></p>
+            </div>
+            <div class="project-header-video">
+
+            </div>
+
         </section>
 
         <section class="project-media">
-            <!-- <img id="detail-image" src="" alt="Project Preview" /> -->
         </section>
 
         <section class="project-body">
             <h3>About the Project</h3>
-            <p id="detail-description"></p>
+
 
             <h3>Tech Stack</h3>
             <div id="detail-tags" class="tags-container"></div>
@@ -38,8 +56,9 @@
             </div>
         </section>
     </main>
-
+    <div id='footer-View'></div>
     <script type="module" src="src/modules/project-info.js"></script>
     <script type="module" src="src/main.js"></script>
 </body>
+
 </html>

@@ -38,6 +38,7 @@
 
 /* 1. Global Reset & Container */
 .skills-grid-wrapper {
+    z-index: 2;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;

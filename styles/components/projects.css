@@ -41,6 +41,7 @@
 
 
 .projects-grid {
+    z-index: 2;
     display: grid;
     margin: 0 auto;
     padding: 60px 60px;
@@ -59,7 +60,7 @@
     display: flex;
     cursor: pointer;
     flex-direction: column;
-    background-color: #0b0b0c;
+    background-color: rgba(255, 255, 255, 0.05);
     border: 2px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     min-height: 550px;

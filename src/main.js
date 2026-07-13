@@ -9,9 +9,11 @@ import { initHome } from './modules/home.js';
 import { initSkills } from './modules/skills.js';
 import { initProjects } from './modules/projects.js';
 import { initContact } from './modules/contact.js';
+import { initFooter } from './modules/footer.js';
 import { initlottie } from './animation/lottie-ani.js';
 import { initHomeShader } from "./animation/homeAnimation-canvas.js";
 import { SparkEffect } from "./animation/sparksAnimation-canvas.js";
+
 /**
  * document.addEventListener("DOMContentLoaded", ...) acts exactly like 
  * Flutter's initialization blocks before calling runApp().
@@ -21,11 +23,11 @@ import { SparkEffect } from "./animation/sparksAnimation-canvas.js";
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("🚀 Portfolio system initializing...");
 
-    
+
 
     // 2. Initialize the UI layouts sequentially
     initNavbar();
-    initaddanimationtoitem();
+
     try {
         await initHome();
     } catch (error) {
@@ -44,23 +46,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("💥 Critical error during initProjects initialization:", error);
     }
 
-    try {
-        await initContact();
-    } catch (error) {
-        console.error("💥 Critical error during initContact initialization:", error);
-    }
+
+    initContact();
+    initFooter()
 
     // cssJavaScript-----------------------------------------------------
-    initHomeShader();
+    
     initlottie("lottie-smile", "assets/icons/smile.json");
     initlottie("scroll-next-lottie", "assets/icons/scroll_down.json");
 
 
-   // const sparksCanvas = document.querySelector('#sparksAnimation-canvas');
+    // const sparksCanvas = document.querySelector('#sparksAnimation-canvas');
     new SparkEffect({
         selector: '#sparksAnimation-canvas',
-        amount: 3000,           
-        direction: { x: -0.5, y: 1 } 
+        amount: 3000,
+        direction: { x: -0.5, y: 1 }
     });
 
 
@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // window.addEventListener('scroll', toggleSparksVisibility);
 
     //------------------------------------------------------------------
+initHomeShader();
 
-
-
+    initaddanimationtoitem();
 });
 
