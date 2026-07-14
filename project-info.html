@@ -17,18 +17,30 @@
 
 <body>
     <main class="project-detail-container">
-       
+
         <canvas id="sparksAnimation-canvas"></canvas>
         <a href="index.html" class="back-btn">
             <img src="/assets/icons/back.svg" alt="back" class="icon" />
         </a>
-       
+
         <section class="project-header">
             <div class="project-header-txt">
                 <h1 id="detail-title"></h1>
                 <p id="detail-subtext"></p>
                 <p id="detail-description"></p>
+
+                <div class="github-btn-main">
+                    <button class="github-btn" aria-label="GitHub Button">
+                        <div class="shimmer"></div>
+                        <div class="icon-content">
+                            <img src="/assets/icons/github.svg" alt="github" class="git-icon" />
+                            <h3>Github</h3>
+                             <img src="/assets/icons/goLink.svg" alt="back" class="icon-git-go" />
+                        </div>
+                    </button>
+                </div>
             </div>
+
             <div class="video-player">
                 <div class="video-thumb-container" id="video-trigger">
                     <img id="thumbImage-image" src="" alt="Project Thumbnail" class="video-preview-img">
@@ -50,6 +62,8 @@
                         </div>
                     </div>
                 </div>
+
+                <h2>Demo video</h2>
             </div>
         </section>
 
@@ -69,7 +83,7 @@
                 <a id="detail-github" href="#" target="_blank" class="btn">View Source Code</a>
             </div>
         </section>
-    
+
     </main>
     <div id='footer-View'></div>
 
