@@ -2,7 +2,7 @@
 import { initaddanimationtoitem } from './animation/addAnimationToItem.js';
 import { SparkEffect } from "./animation/sparksAnimation-canvas.js";
 import { initFooter } from './modules/footer.js';
-import { getCurrentProject, initVideo, initTech } from './modules/project-info.js';
+import { getCurrentProject, initVideo, initTech, initPage } from './modules/project-info.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("🚀 Portfolio system initializing...");
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
         console.error("💥 Critical error during tech initialization:", error);
     }
+    initPage()
 
     initFooter();
     new SparkEffect({});

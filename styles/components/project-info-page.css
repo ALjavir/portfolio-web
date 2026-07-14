@@ -1,0 +1,241 @@
+/* 📦 Core Parent Section Track Container */
+#project-page{
+    display: block;
+}
+
+#title{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 30px;
+    position: relative;
+    font-family: 'Orticalinear';
+    font-size: 60px;
+}
+
+.scroll-sections-container {
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0 8rem 0;
+}
+
+/* 🏎️ Clean Alternating Flex Row Track */
+.project-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 8rem 4rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .project-row {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 4rem;
+    }
+}
+
+/* 📝 Text Block Columns - Flows freely based on content font rules */
+.text-col {
+    flex: 1;
+    max-width: 760px;
+}
+
+.text-col h3 {
+    font-family: var(--font-header), sans-serif;
+    color: #ffffff;
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+}
+
+.text-col p {
+    font-family: var(--font-sub), sans-serif;
+    color: #ffffffe8;
+    font-size: 1.15rem;
+    line-height: 1.28;
+    margin: 0;
+    font-weight: 400;
+    text-align: justify;
+}
+
+
+
+/* 📦 Tells the wrapper container to tightly hug the dimensions of the inner image */
+/* 📦 1. Main Image Container Frame */
+.image-wrapper {
+    position: relative;
+    display: block;
+    width: 50%;
+    height: 500px;
+    border-radius: 16px;
+    /* Matches the clean rounded corners from Pic 2 */
+    overflow: hidden;
+    /* Clips the overlay perfectly inside the corners */
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.page-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+   transition: all 0.3s ease-out;
+}
+
+/* Dim the screenshot slightly on hover just like the video component */
+.image-wrapper:hover img:first-child {
+        transform: scale(1.02);
+    filter: brightness(0.8);
+}
+
+/* 🎯 2. Centered Full-Coverage Overlay Layer */
+.zoom-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    opacity: 1;
+    /* Invisible by default */
+    pointer-events: none;
+    /* Allows click events to pass right through to the wrapper */
+    transition: opacity 0.2s ease-out;
+}
+
+/* Reveal the overlay layout smoothly when hovering over the card */
+.image-wrapper:hover .zoom-overlay {
+    opacity: 1;
+}
+
+/* 🌬️ 3. The Large Outer Translucent Blurry Ring (Matches size-28) */
+.zoom-blur-ring {
+    width: 112px;
+    height: 112px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Pop-in entry animation scaling */
+    transform: scale(0.9);
+    transition: transform 0.2s ease-out;
+}
+
+.image-wrapper:hover .zoom-blur-ring {
+    transform: scale(1);
+}
+
+/* 💎 4. The Inner Gradient Action Button (Matches size-20) */
+.zoom-icon-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), #ffffff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-out;
+}
+
+.image-wrapper:hover .zoom-icon-btn {
+    transform: scale(1.15);
+    /* Scales the inner icon button up slightly more on hover */
+}
+
+/* 🔍 5. The Inner SVG Zoom Asset Graphic */
+.zoom-icon-btn img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    /* Forces the SVG path to render bright white regardless of original file color */
+    filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Reveal the zoom icon beautifully only when the image wrapper is hovered */
+.image-wrapper:hover .zoom-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+
+
+/* ==========================================================================
+   ✨ HIGH-PERFORMANCE ENTRY ANIMATIONS
+   ========================================================================== */
+.reveal-from-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+}
+
+.reveal-from-right {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+}
+
+/* Injects open visible position transforms via the intersection tracking loop */
+.project-row.is-visible .reveal-from-left,
+.project-row.is-visible .reveal-from-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+
+/* ==========================================================================
+   🌌 FULLSCREEN LIGHTBOX STYLES (Kept intact)
+   ========================================================================== */
+.image-lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(8, 8, 10, 0.95);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.image-lightbox-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-content-box {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+}
+
+.lightbox-expanded-img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+}

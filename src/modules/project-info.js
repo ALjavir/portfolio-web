@@ -96,30 +96,16 @@ export function initVideo() {
 
 
 export function initTech() {
-    // 1. Target the element container on the page
     const gridContainer = document.getElementById('project-tech-grid');
     if (!gridContainer) return;
-
-    // 2. Safety guard: verify tech stack object map structure exists
     if (!currentProject || !currentProject.tech || typeof currentProject.tech !== 'object') {
         gridContainer.innerHTML = '<p class="feature-description-text">No technology specifications declared.</p>';
         return;
     }
-
-    // 3. Destructure the Map Object into a workable Array loop list
     const techEntries = Object.entries(currentProject.tech);
-
-    // 4. Construct the UI Elements Template String Loop
     const generatedHtml = techEntries.map(([techName, data], index) => {
-        
-        // 🎯 Compute border utility rules to exactly mirror Aceternity grid architecture
-        // Left border applies to column starts on large viewports (index 0, index 4, etc.)
         const isLeftEdge = (index === 0 || index === 4) ? 'border-left-edge' : '';
-        
-        // Bottom border applies to the horizontal row break dividing the first tier row items (items 0-3)
         const isBottomRow = (index < 4) ? 'border-bottom-row' : '';
-        
-        // Gradient background fades upwards for tier 1 row elements, downwards for tier 2 row elements
         const isTopGradient = (index < 4) ? 'gradient-top' : 'gradient-bottom';
 
         return `
@@ -128,10 +114,14 @@ export function initTech() {
                 
                 <div class="feature-icon-box">
                     <img src="${data.image || 'assets/icons/default-tech.svg'}" 
+           
                          alt="${techName} Logo" 
                          class="tech-icon-img"
+                
                          onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%23666\'><circle cx=\'12\' cy=\'12\' r=\'10\' stroke-width=\'2\'/></svg>'">
-                </div>
+                
+              
+                         </div>
                 
                 <div class="feature-title-box">
                     <div class="feature-accent-bar"></div>
@@ -146,4 +136,127 @@ export function initTech() {
     // 5. Mount the node payload to the viewport layout engine
     gridContainer.innerHTML = generatedHtml;
     console.log("🛠️ Tech grid generated successfully with entries count:", techEntries.length);
+}
+
+
+
+export function initPage() {
+    const projectPage = document.getElementById('project-rows-target');
+    if (!projectPage) return;
+
+    if (!currentProject || !currentProject.page || typeof currentProject.page !== 'object') {
+        projectPage.innerHTML = '';
+        return;
+    }
+
+    // Convert map to workable arrays and sort chronologically by index
+    const projectPageEntries = Object.entries(currentProject.page);
+    projectPageEntries.sort((a, b) => (a[1].index || 0) - (b[1].index || 0));
+
+    // 🎯 SIMPLE EVEN/ODD LOOP CONDITIONAL ARCHITECTURE
+    const sectionsHtml = projectPageEntries.map(([pageName, data], index) => {
+        const imageUrl = data.image || 'assets/images/placeholder-ui.png';
+        const textContent = data.text || 'Interface view context details specification.';
+
+        if (index % 2 === 0) {
+            // EVEN INDEX: text (left) ---- image (right)
+            return `
+        <div class="project-row">
+            <div class="text-col reveal-from-left">
+                <h3>${pageName}</h3>
+                <p>${textContent}</p>
+            </div>
+            <div class="image-wrapper reveal-from-right">
+                <img src="${imageUrl}" alt="${pageName}" class="page-img">
+                
+                <div class="zoom-overlay">
+                    <div class="zoom-blur-ring">
+                        <div class="zoom-icon-btn">
+                            <img src="/assets/icons/zoom.svg" alt="Zoom In" height="25px" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+        } else {
+            // ODD INDEX: image (left) ---- text (right)
+            return `
+        <div class="project-row">
+            <div class="image-wrapper reveal-from-left">
+                <img src="${imageUrl}" alt="${pageName}" class="page-img">
+                
+                <div class="zoom-overlay">
+                    <div class="zoom-blur-ring">
+                        <div class="zoom-icon-btn">
+                            <img src="/assets/icons/zoom.svg" alt="Zoom In" height="25px" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-col reveal-from-right">
+                <h3>${pageName}</h3>
+                <p>${textContent}</p>
+            </div>
+        </div>
+    `;
+        }
+    }).join('');
+
+    // Reusable Fullscreen Lightbox structure injection
+    const lightboxHtml = `
+        <div id="image-lightbox" class="image-lightbox-overlay">
+            <div class="lightbox-content-box">
+                <button id="lightbox-close" class="lightbox-close-btn">×</button>
+                <img id="lightbox-expanded-img" class="lightbox-expanded-img" src="" alt="">
+            </div>
+        </div>
+    `;
+
+    projectPage.innerHTML = sectionsHtml + lightboxHtml;
+
+    // ==========================================================================
+    // ⚡ LIGHTBOX INTERACTIVE BINDINGS
+    // ==========================================================================
+    const lightboxOverlay = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-expanded-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const rowImages = projectPage.querySelectorAll('.image-wrapper img');
+
+    rowImages.forEach(img => {
+        img.onclick = () => {
+            if (lightboxOverlay && lightboxImg) {
+                lightboxImg.src = img.src;
+                lightboxOverlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden'; // Lock background scrolling
+            }
+        };
+    });
+
+    const closeLightbox = () => {
+        if (lightboxOverlay) {
+            lightboxOverlay.classList.remove('is-open');
+            document.body.style.overflow = ''; // Release scroll
+        }
+    };
+
+    if (lightboxClose) lightboxClose.onclick = closeLightbox;
+    if (lightboxOverlay) {
+        lightboxOverlay.onclick = (e) => { if (e.target === lightboxOverlay) closeLightbox(); };
+    }
+
+    // ==========================================================================
+    // 🧱 OPTIMIZED INTERSECTION OBSERVER PIPELINE (Triggers Once)
+    // ==========================================================================
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Stop observation instantly
+            }
+        });
+    }, { root: null, rootMargin: '0px', threshold: 0.1 });
+
+    const rowsToTrack = projectPage.querySelectorAll('.project-row');
+    rowsToTrack.forEach(row => revealObserver.observe(row));
 }

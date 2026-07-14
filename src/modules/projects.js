@@ -15,7 +15,7 @@ export async function initProjects() {
 
    
     try {
- CubeLoader.mount(scrollView);
+ 
         const projectsCollectionRef = collection(db, "project");
         const querySnapshot = await getDocs(projectsCollectionRef);
         const projectList = [];
@@ -99,11 +99,11 @@ export async function initProjects() {
             }
         });
 
-         CubeLoader.unmount(scrollView);
+        
         return projectList;
 
     } catch (error) {
-         CubeLoader.mount(scrollView);
+    CubeLoader.mount(scrollView);
         console.error("❌ Error loading projects:", error);
         return [];
     }

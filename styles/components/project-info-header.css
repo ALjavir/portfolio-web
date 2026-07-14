@@ -165,13 +165,14 @@
 }
 
 #detail-description {
-    font-family: var(--font-sub, sans-serif);
-    font-size: 21px;
+font-family: var(--font-sub, sans-serif);
+    font-size: 20px;
     margin: 0px auto 0px auto;
     max-width: 650px;
     line-height: 1.6;
     text-align: justify;
-    font-weight: 300;
+    font-weight: 400;
+    color: #ffffffe8;
 }
 
 
