@@ -120,8 +120,8 @@
 }
 
 
-.icon-git-go{
-      height: 25px;
+.icon-git-go {
+    height: 25px;
     width: 25px;
 }
 
@@ -165,7 +165,7 @@
 }
 
 #detail-description {
-font-family: var(--font-sub, sans-serif);
+    font-family: var(--font-sub, sans-serif);
     font-size: 20px;
     margin: 0px auto 0px auto;
     max-width: 650px;
@@ -326,4 +326,46 @@ font-family: var(--font-sub, sans-serif);
 .video-cancel-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+    .project-header {
+        flex-direction: column;
+        padding: 20px 0px;
+
+    }
+
+    #detail-title {
+        font-size: 38px;
+    }
+
+    #detail-subtext {
+        font-size: 18px;
+        padding-bottom: 20px;
+    }
+
+    #detail-description {
+        font-size: 16px;
+         color: #ffffffc8;
+    }
+
+    .github-btn-main {
+        padding: 30px 0px;
+    }
+
+    .git-icon {
+        height: 25px;
+        width: 25px;
+    }
+    .github-btn:hover{
+            transform: scale(1.0);
+    }
+
+    .video-thumb-container{
+        aspect-ratio: 0 / 0;
+    }
+    .video-player{
+        gap: 15px;
+    }
 }

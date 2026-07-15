@@ -13,7 +13,7 @@ import { initFooter } from './modules/footer.js';
 import { initlottie } from './animation/lottie-ani.js';
 import { initHomeShader } from "./animation/homeAnimation-canvas.js";
 import { SparkEffect } from "./animation/sparksAnimation-canvas.js";
-import { CubeLoader } from "./animation/cubeLoader.js";
+
 /**
  * document.addEventListener("DOMContentLoaded", ...) acts exactly like 
  * Flutter's initialization blocks before calling runApp().

@@ -18,6 +18,11 @@
   transform: translateX(-40px);
 }
 
+.fade-right {
+  transform: translateX(40px);
+}
+
+
 /* 3. Scale Up (Great for cards or project items) */
 .scale-up {
   transform: scale(0.92);

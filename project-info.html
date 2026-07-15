@@ -23,62 +23,62 @@
         <a href="index.html" class="back-btn">
             <img src="/assets/icons/back.svg" alt="back" class="icon" />
         </a>
+        <div class="innerSection">
+            <section class="project-header">
+                <div class="project-header-txt">
+                    <h1 id="detail-title" class="scroll-reveal fade-left" style="transition-delay: 0.3s;"></h1>
+                    <p id="detail-subtext" class="scroll-reveal fade-left" style="transition-delay: 0.4s;"></p>
+                    <p id="detail-description" class="scroll-reveal fade-left" style="transition-delay: 0.5s;"></p>
 
-        <section class="project-header">
-            <div class="project-header-txt">
-                <h1 id="detail-title"></h1>
-                <p id="detail-subtext"></p>
-                <p id="detail-description"></p>
-
-                <div class="github-btn-main">
-                    <button class="github-btn" aria-label="GitHub Button">
-                        <div class="shimmer"></div>
-                        <div class="icon-content">
-                            <img src="/assets/icons/github.svg" alt="github" class="git-icon" />
-                            <h3>Github</h3>
-                            <img src="/assets/icons/goLink.svg" alt="back" class="icon-git-go" />
-                        </div>
-                    </button>
-                </div>
-            </div>
-
-            <div class="video-player">
-                <div class="video-thumb-container" id="video-trigger">
-                    <img id="thumbImage-image" src="" alt="Project Thumbnail" class="video-preview-img">
-
-                    <div class="play-btn-blur-ring">
-                        <div class="play-btn-inner-gradient">
-                            <img src="/assets/icons/play.svg" alt="back" height="25px" />
-                        </div>
+                    <div class="github-btn-main scroll-reveal fade-up" style="transition-delay: 0.5s;">
+                        <button class="github-btn" aria-label="GitHub Button">
+                            <div class="shimmer"></div>
+                            <div class="icon-content">
+                                <img src="/assets/icons/github.svg" alt="github" class="git-icon" />
+                                <h3>Github</h3>
+                                <img src="/assets/icons/goLink.svg" alt="back" class="icon-git-go" />
+                            </div>
+                        </button>
                     </div>
                 </div>
 
-                <div class="video-screen-overlay" id="video-overlay">
-                    <div class="video-modal-box">
-                        <button class="video-cancel-btn" id="video-cancel" aria-label="Close Video">✕</button>
+                <div class="video-player scroll-reveal fade-right" style="transition-delay: 0.5s;">
+                    <div class="video-thumb-container" id="video-trigger">
+                        <img id="thumbImage-image" src="" alt="Project Thumbnail" class="video-preview-img">
 
-                        <div class="video-player-frame">
-                            <iframe id="modal-youtube-player" src="" frameborder="0" allow="autoplay; encrypted-media"
-                                allowfullscreen></iframe>
+                        <div class="play-btn-blur-ring">
+                            <div class="play-btn-inner-gradient">
+                                <img src="/assets/icons/play.svg" alt="back" height="25px" />
+                            </div>
                         </div>
                     </div>
+
+                    <div class="video-screen-overlay" id="video-overlay">
+                        <div class="video-modal-box">
+                            <button class="video-cancel-btn" id="video-cancel" aria-label="Close Video">✕</button>
+
+                            <div class="video-player-frame">
+                                <iframe id="modal-youtube-player" src="" frameborder="0"
+                                    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Demo video</h2>
                 </div>
+            </section>
 
-                <h2>Demo video</h2>
-            </div>
-        </section>
+            <section class="tech-section-container scroll-reveal fade-up" style="transition-delay: 0.7s;">
+                <div id="project-tech-grid" class="features-grid"></div>
+                <h3 class="tech-section-heading">Technologies Used</h3>
+            </section>
 
-        <section class="tech-section-container">
-            <div id="project-tech-grid" class="features-grid"></div>
-            <h3 class="tech-section-heading">Technologies Used</h3>
-        </section>
 
-       
-        <section id="project-page" class="scroll-sections-container">
-          <div id="title">Feature</div>
-    <div id="project-rows-target"></div>
-        </section>
-
+            <section id="project-page" class="scroll-sections-container">
+                <div id="title">Feature</div>
+                <div id="project-rows-target"></div>
+            </section>
+        </div>
     </main>
     <div id='footer-View'></div>
 

@@ -39,6 +39,8 @@
     }
 }
 
+
+
 /* 📝 Text Block Columns - Flows freely based on content font rules */
 .text-col {
     flex: 1;
@@ -238,4 +240,37 @@
     color: #ffffff;
     font-size: 2rem;
     cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .scroll-sections-container{
+        padding: 0;
+    }
+    #title {
+        top: 0px;
+        padding-bottom: 30px;
+    }
+    .project-row{
+        gap: 1rem;
+        padding: 0rem 0rem 4rem;
+    }
+
+
+    .text-col{
+        order: 1;
+    } 
+    .text-col h3 {
+       
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+    }
+    .text-col p {
+        font-size: 1.11rem;
+        color: #ffffffc8;
+    }
+
+    .image-wrapper{
+        width: 100%;
+    }
 }
