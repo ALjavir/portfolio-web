@@ -53,6 +53,7 @@
 }
 
 .github-btn {
+    text-decoration: none;
     position: relative;
     display: inline-flex;
     align-items: center;

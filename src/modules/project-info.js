@@ -24,6 +24,7 @@ export async function getCurrentProject() {
         document.getElementById('detail-title').innerText = currentProject.name || 'Untitled Project';
         document.getElementById('detail-subtext').innerText = currentProject.subName || '';
         document.getElementById('detail-description').innerText = currentProject.description || 'No description provided.';
+        document.getElementById('github-link').href = currentProject.link || '#';
 
         return currentProject;
 
