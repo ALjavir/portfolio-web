@@ -3,7 +3,8 @@ import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
 export function initHomeShader() {
     const canvas = document.getElementById("homeAnimation-canvas");
-    if (!canvas) return;
+
+   
 
     // 1. Core GLSL Shader Programs
     const vertexShader = `
@@ -87,34 +88,34 @@ export function initHomeShader() {
 
     // 4. Smooth Layout Canvas Resizing Engine
     function handleResize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    
-    // 1. Tell Three.js to adjust the viewport size
-    renderer.setSize(width, height, false);
-    
-    // 2. Capture the TRUE hardware pixels from the canvas buffer
-    const physicalWidth = renderer.domElement.width;
-    const physicalHeight = renderer.domElement.height;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
 
-    // 3. Pass the physical dimensions to the shader uniform (DO NOT OVERWRITE THIS BELOW!)
-    uniforms.resolution.value.set(physicalWidth, physicalHeight);
+        // 1. Tell Three.js to adjust the viewport size
+        renderer.setSize(width, height, false);
 
-    // 4. Responsive parameters based on viewport width
-    if (width <= 768) {
-        // Mobile layout parameters
-        uniforms.angle.value = 0; 
-        uniforms.pathFrequency.value = 0; 
-        uniforms.pathAmplitude.value = 0; 
-        uniforms.yScale.value = 1;
-    } else {
-        // Desktop layout parameters
-        uniforms.angle.value = 0.0;
-        uniforms.pathFrequency.value = 0.0;
-        uniforms.pathAmplitude.value = 0.0;
-        uniforms.yScale.value = 0.5;
+        // 2. Capture the TRUE hardware pixels from the canvas buffer
+        const physicalWidth = renderer.domElement.width;
+        const physicalHeight = renderer.domElement.height;
+
+        // 3. Pass the physical dimensions to the shader uniform (DO NOT OVERWRITE THIS BELOW!)
+        uniforms.resolution.value.set(physicalWidth, physicalHeight);
+
+        // 4. Responsive parameters based on viewport width
+        if (width <= 768) {
+            // Mobile layout parameters
+            uniforms.angle.value = 0;
+            uniforms.pathFrequency.value = 0;
+            uniforms.pathAmplitude.value = 0;
+            uniforms.yScale.value = 1;
+        } else {
+            // Desktop layout parameters
+            uniforms.angle.value = 0.0;
+            uniforms.pathFrequency.value = 0.0;
+            uniforms.pathAmplitude.value = 0.0;
+            uniforms.yScale.value = 0.5;
+        }
     }
-}
 
     // 5. The Active Animation Render Frame Loop 
     let animationId;
@@ -122,6 +123,9 @@ export function initHomeShader() {
         uniforms.time.value += 0.01;
         renderer.render(scene, camera);
         animationId = requestAnimationFrame(animate);
+    
+        if (canvas.style.display === 'none') return;
+        renderer.render(scene, camera);
     }
 
     handleResize();

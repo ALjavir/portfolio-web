@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-       
+
         await initProjects();
-    
+
     } catch (error) {
         console.error("💥 Critical error during initProjects initialization:", error);
     }
@@ -53,29 +53,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     initFooter()
 
     // cssJavaScript-----------------------------------------------------
-    initHomeShader();
+
     initlottie("lottie-smile", "assets/icons/smile.json");
     initlottie("scroll-next-lottie", "assets/icons/scroll_down.json");
 
 
-    // const sparksCanvas = document.querySelector('#sparksAnimation-canvas');
-    new SparkEffect({
-       
+    initHomeShader();
+    const homeCanvas = document.querySelector('#homeAnimation-canvas');
+    const sparksCanvas = document.querySelector('#sparksAnimation-canvas');
+    new SparkEffect();
 
-        
-    });
+    function toggleCanvasesVisibility() {
+        const homeHeight = window.innerHeight;
+        const isAtHomeSection = window.scrollY < homeHeight - 100;
 
+        if (isAtHomeSection) {
+            if (homeCanvas) homeCanvas.style.display = 'block';
+            if (sparksCanvas) sparksCanvas.style.display = 'none';
+        } else {
+         
+            if (homeCanvas) homeCanvas.style.display = 'none';
+            if (sparksCanvas) sparksCanvas.style.display = 'block'; 
+        }
+    }
 
-    // function toggleSparksVisibility() {
-    //     const homeHeight = window.innerHeight;
-    //     if (window.scrollY < homeHeight - 100) {
-    //         sparksCanvas.style.display = 'none';
-    //     } else {
-    //         sparksCanvas.style.display = 'block';
-    //     }
-    // }
-    // toggleSparksVisibility();
-    // window.addEventListener('scroll', toggleSparksVisibility);
+    toggleCanvasesVisibility();
+    window.addEventListener('scroll', toggleCanvasesVisibility);
 
     //------------------------------------------------------------------
 
