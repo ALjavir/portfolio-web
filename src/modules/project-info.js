@@ -173,7 +173,7 @@ export function initPage() {
                 <div class="zoom-overlay">
                     <div class="zoom-blur-ring">
                         <div class="zoom-icon-btn">
-                            <img src="/assets/icons/zoom.svg" alt="Zoom In" height="25px" />
+                            <img src="/assets/icons/zoom.svg" alt="Zoom In" height="25px" loading="lazy"/>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@ export function initPage() {
                 <div class="zoom-overlay">
                     <div class="zoom-blur-ring">
                         <div class="zoom-icon-btn">
-                            <img src="/assets/icons/zoom.svg" alt="Zoom In" height="25px" />
+                            <img src="/assets/icons/zoom.svg" alt="Zoom In" height="25px" loading="lazy"/>
                         </div>
                     </div>
                 </div>
