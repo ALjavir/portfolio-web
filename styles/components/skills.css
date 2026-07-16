@@ -90,13 +90,13 @@
 }
 .glass-blob {
     position: absolute;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     opacity: 0;
     transition: all 0.6s ease;
-    z-index: 2;width: 100px; height: 80px; 
+    z-index: 0;width: 100px; height: 80px; 
 }
 
 .blob-top-left { top: -100px; left: 40px; }
@@ -112,7 +112,7 @@
     height: 380px;
     padding: 30px;
     background: rgba(255, 255, 255, 0.05); /* Ensure semi-transparent BG */
-    backdrop-filter: blur(15px);
+    
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 6px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -123,6 +123,8 @@
 }
 
 .glass-content-panel:hover{
+    backdrop-filter: blur(0px);
+     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.30);
 }
@@ -135,11 +137,13 @@
 }
 
 .skill-skew-card.is-active .skewed-beam {
-    transform: skewX(0deg);
-    left: 0;
+    transform: skewX(0deg) scaleX(2) scaleY(1.02);
+    top: -48px;
+    border-radius: 4px;
+    /* transform: skewX(0deg) scaleX(2.5); */
+    /* left: 0;
     width: 100%;
-   
-    height: 500px;
+    height: 500px; */
 }
 
 .skill-skew-card.is-active .glass-blob {

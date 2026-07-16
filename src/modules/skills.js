@@ -7,19 +7,19 @@ export async function initSkills() {
     console.log("🔹 Skills fetch starting...");
     const data = getLoadedSkills();
 
-    
+
     try {
 
-const masterWrapper = document.getElementById("skills-detailed-grid");
-    CubeLoader.mount(".skills-grid-wrapper");
-   
+        const masterWrapper = document.getElementById("skills-detailed-grid");
+        CubeLoader.mount(".skills-grid-wrapper");
+
         if (data) {
             const entries = Object.entries(data);
 
             // Sort by index to keep your order intact
             entries.sort((a, b) => a[1].index - b[1].index);
 
-           
+
             const cardGradients = GradientColor().cardGradients;
 
             let groupHTML = "";
@@ -66,17 +66,17 @@ const masterWrapper = document.getElementById("skills-detailed-grid");
     `;
             });
 
-         //   const masterWrapper = document.getElementById("skills-detailed-grid");
+            //   const masterWrapper = document.getElementById("skills-detailed-grid");
             if (masterWrapper) {
                 masterWrapper.innerHTML = groupHTML;
-               
+
             }
-        CubeLoader.unmount(".skills-grid-wrapper");
+            CubeLoader.unmount(".skills-grid-wrapper");
         }
-   
-            
-        
-    
+
+
+
+
     } catch (error) {
 
 
