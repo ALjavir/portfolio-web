@@ -191,6 +191,7 @@
 .project-row.is-visible .reveal-from-left,
 .project-row.is-visible .reveal-from-right {
     opacity: 1;
+    z-index: 2;
     transform: translateX(0);
 }
 
