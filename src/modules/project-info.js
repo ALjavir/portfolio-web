@@ -44,14 +44,13 @@ export function initVideo() {
     const videoOverlay = document.getElementById('video-overlay');
     const videoCancel = document.getElementById('video-cancel');
 
-    // 1. Inject the thumbnail image data safely
     if (thumbImg) {
         thumbImg.src = currentProject.thumbImage || 'assets/images/default-thumbnail.png';
     }
 
     // 2. Control Play / Cancel logic
     if (videoTrigger && ytPlayer && videoOverlay && videoCancel) {
-
+        document.body.appendChild(videoOverlay);
         videoTrigger.onclick = () => {
             const rawVideoData = currentProject.video || '';
 
@@ -133,8 +132,6 @@ export function initTech() {
             </div>
         `;
     }).join('');
-
-    // 5. Mount the node payload to the viewport layout engine
     gridContainer.innerHTML = generatedHtml;
     console.log("🛠️ Tech grid generated successfully with entries count:", techEntries.length);
 }
@@ -208,7 +205,8 @@ export function initPage() {
     const lightboxHtml = `
         <div id="image-lightbox" class="image-lightbox-overlay">
             <div class="lightbox-content-box">
-                <button id="lightbox-close" class="lightbox-close-btn">×</button>
+            <button class="video-cancel-btn" id="lightbox-close" aria-label="Close Video">✕</button>
+                
                 <img id="lightbox-expanded-img" class="lightbox-expanded-img" src="" alt="">
             </div>
         </div>

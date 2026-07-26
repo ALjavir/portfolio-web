@@ -260,15 +260,14 @@
 
 /* 🎬 Full-Screen Dark Modal Overlay Screen */
 .video-screen-overlay {
-    position: fixed;
+   position: fixed;
     inset: 0;
-    z-index: 999;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(8, 8, 10, 0.95);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
