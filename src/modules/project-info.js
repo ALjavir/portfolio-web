@@ -23,7 +23,8 @@ export async function getCurrentProject() {
         document.title = `${currentProject.name} | Project Details`;
         document.getElementById('detail-title').innerText = currentProject.name || 'Untitled Project';
         document.getElementById('detail-subtext').innerText = currentProject.subName || '';
-        document.getElementById('detail-description').innerText = currentProject.description || 'No description provided.';
+        // Change .innerText to .innerHTML
+        document.getElementById('detail-description').innerHTML = currentProject.description || 'No description provided.';
         document.getElementById('github-link').href = currentProject.link || '#';
 
         return currentProject;
@@ -34,64 +35,78 @@ export async function getCurrentProject() {
     }
 }
 
-export function initVideo() {
-    // Safety guard to prevent crashes if project didn't load
-    if (!currentProject) return;
 
-    const thumbImg = document.getElementById('thumbImage-image');
+
+
+export function initProjectMedia() {
+    if (!currentProject) return;
+    const liveLinkCard = document.querySelector('.live-link');
+    const videoCard = document.querySelector('.video-player');
+
+    const hasLiveLink = Boolean(currentProject.liveLink);
+    const hasVideo = Boolean(currentProject.video);
+
     const videoTrigger = document.getElementById('video-trigger');
     const ytPlayer = document.getElementById('modal-youtube-player');
     const videoOverlay = document.getElementById('video-overlay');
     const videoCancel = document.getElementById('video-cancel');
 
-    if (thumbImg) {
-        thumbImg.src = currentProject.thumbImage || 'assets/images/default-thumbnail.png';
-    }
 
-    // 2. Control Play / Cancel logic
-    if (videoTrigger && ytPlayer && videoOverlay && videoCancel) {
-        document.body.appendChild(videoOverlay);
-        videoTrigger.onclick = () => {
-            const rawVideoData = currentProject.video || '';
+    if (hasLiveLink) {
+        if (liveLinkCard) liveLinkCard.style.display = 'flex';
+        if (videoCard) videoCard.style.display = 'none';
 
-            // 🎯 SMART EXTRACTOR: Strips out full URLs and leaves ONLY the 11-character ID code
-            let videoId = '';
-            const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-            const match = rawVideoData.match(regExp);
+        const thumbImg = liveLinkCard?.querySelector('#thumbImage-image');
+        thumbImg.src = currentProject.thumbImage;
 
-            if (match && match[1]) {
-                videoId = match[1]; // Successfully caught '_JXjAi11lCk'
-            } else {
-                // Fallback: If it's already a clean 11-character ID string
-                videoId = rawVideoData;
-            }
 
-            console.log("🎥 Cleaned YouTube Video ID target:", videoId);
+        if (liveLinkCard) {
+            liveLinkCard.onclick = () => {
+                window.open(currentProject.liveLink, '_blank', 'noopener,noreferrer');
+            };
+        }
 
-            if (videoId) {
-                // Set the iframe source using ONLY the clean ID code
+    } else if (hasVideo) {
+        if (liveLinkCard) liveLinkCard.style.display = 'none';
+        if (videoCard) videoCard.style.display = 'flex';
+
+        const thumbImg = videoCard?.querySelector('#thumbImage-image');
+        thumbImg.src = currentProject.thumbImage;
+        if (videoTrigger && ytPlayer && videoOverlay && videoCancel) {
+            document.body.appendChild(videoOverlay);
+
+            videoTrigger.onclick = () => {
+                const rawVideoData = currentProject.video || '';
+                let videoId = '';
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                const match = rawVideoData.match(regExp);
+
+                if (match && match[2].length === 11) {
+                    videoId = match[2];
+                } else {
+                    videoId = rawVideoData;
+                }
+
                 ytPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
                 videoOverlay.classList.add('is-active');
-            } else {
-                console.error("❌ Link parsing failed. Ensure you provided a valid YouTube URL format.");
-            }
-        };
+            };
 
-        // Close and clean up player link when clicking close cross button
-        videoCancel.onclick = () => {
-            videoOverlay.classList.remove('is-active');
-            ytPlayer.src = '';
-        };
-
-        // Close if clicking outside the video container box on the dark overlay background
-        videoOverlay.onclick = (event) => {
-            if (event.target === videoOverlay) {
+            videoCancel.onclick = () => {
                 videoOverlay.classList.remove('is-active');
                 ytPlayer.src = '';
-            }
-        };
-    }
+            };
 
+            videoOverlay.onclick = (event) => {
+                if (event.target === videoOverlay) {
+                    videoOverlay.classList.remove('is-active');
+                    ytPlayer.src = '';
+                }
+            };
+        }
+    } else {
+        if (liveLinkCard) liveLinkCard.style.display = 'none';
+        if (videoCard) videoCard.style.display = 'none';
+    }
 }
 
 

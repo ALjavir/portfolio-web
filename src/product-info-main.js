@@ -2,7 +2,7 @@
 import { initaddanimationtoitem } from './animation/addAnimationToItem.js';
 import { SparkEffect } from "./animation/sparksAnimation-canvas.js";
 import { initFooter } from './modules/footer.js';
-import { getCurrentProject, initVideo, initTech, initPage } from './modules/project-info.js';
+import { getCurrentProject, initProjectMedia, initTech, initPage } from './modules/project-info.js';
 import { CubeLoader } from "./animation/cubeLoader.js";
 
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         CubeLoader.mount(".innerSection");
-        await getCurrentProject(); initVideo(); initTech(); initPage()
+        await getCurrentProject(); initProjectMedia(); initTech(); initPage()
          CubeLoader.unmount(".innerSection");
     } catch (error) {
         console.error("💥 Critical error during project fetching:", error);
