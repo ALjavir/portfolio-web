@@ -133,11 +133,8 @@ export function initTech() {
                          alt="${techName} Logo" 
                          class="tech-icon-img"
                 
-                         onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%23666\'><circle cx=\'12\' cy=\'12\' r=\'10\' stroke-width=\'2\'/></svg>'">
-                
-              
+                         onerror="image not fount!!!">
                          </div>
-                
                 <div class="feature-title-box">
                     <div class="feature-accent-bar"></div>
                     <span class="feature-title-text">${techName}</span>

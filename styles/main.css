@@ -12,41 +12,42 @@
 }
 
 @font-face {
-    font-family: 'Bodoni Moda';
-    src: url('../assets/fonts/BodoniModa-VariableFont.ttf') format('truetype');
-    font-weight: 400 900;
-    font-style: normal;
+  font-family: 'Bodoni Moda';
+  src: url('../assets/fonts/BodoniModa-VariableFont.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
 }
 
 /* 2. Register Lato Regular */
 @font-face {
-    font-family: 'Lato';
-    src: url('../assets/fonts/Lato-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
 }
 
 
 @font-face {
-    font-family: 'Lato';
-    src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* 3. Register Lato Bold */
 @font-face {
-    font-family: 'Lato';
-    src: url('../assets/fonts/Lato-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Orticalinear';
-    src: url('../assets/fonts/OrticaLinear-Light.woff2') format('opentype');
-    font-weight: 200; /* Light variant matches a 300 font weight configuration */
-    font-style: normal;
+  font-family: 'Orticalinear';
+  src: url('../assets/fonts/OrticaLinear-Light.woff2') format('opentype');
+  font-weight: 200;
+  /* Light variant matches a 300 font weight configuration */
+  font-style: normal;
 }
 
 
@@ -59,7 +60,7 @@
   --font-navbar: 'Gangors', sans-serif;
   --font-primary: 'Bodoni Moda', serif;
   --font-sub: 'Lato', sans-serif;
-  --font-header: 'Orticalinear', sans-serif;  
+  --font-header: 'Orticalinear', sans-serif;
 
   /* --- Icon Asset Paths Map (From icon_style.dart) --- */
   --icon-menu-open: url('/assets/icons/menu_open.svg');
@@ -90,12 +91,11 @@
 
 
 html {
-  /* Only apply the boundary restriction to the root html element */
-  overscroll-behavior: none; 
+  overscroll-behavior: none;
 }
 
 body {
-  background-color: #000000; /* Keeps your background dark */
+  background-color: #000000;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
@@ -115,11 +115,13 @@ body {
   width: 100%;
 }
 
-.project-detail-container{
-    flex: 1;
+.project-detail-container {
+  flex: 1;
   width: 100%;
   color: white;
   padding: 30px;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .site-footer {
@@ -128,7 +130,7 @@ body {
 
 
 @media (max-width: 768px) {
-  .project-detail-container{
+  .project-detail-container {
     padding: 25px 25px 0px;
   }
 }
@@ -138,8 +140,15 @@ body {
 
 
 h1 {
-  /* Headings need to scale much louder than body text! */
   font-size: clamp(28px, 4vw + 12px, 48px);
 }
 
+strong{
+  font-weight: bold;
+   font-size: calc(1em + 1.5px);
+}
 
+em{
+  font-style: italic;
+     font-size: calc(1em + 1.5px);
+}
